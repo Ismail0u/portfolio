@@ -1,20 +1,23 @@
 import React from 'react';
 import ProjectCard from './ProjetCard';
+import emigResto1 from '../assets/image/emigResto1.PNG';
+import facelog from '../assets/image/facelog.PNG';
+import NIBOT from '../assets/image/NIBOT.PNG';
 
 const projects = [
   {
     title: 'EMIG Resto',
     description: 'Application de gestion complète de restaurant (backend Django, frontend React).',
-    image: '/projects/emigresto.png',
+    image: emigResto1,
     github: 'https://github.com/Ismail0u/emigresto',
     demo: 'https://emigresto.vercel.app'
     },
   {
     title: 'FaceLogin',
     description: 'Système de reconnaissance faciale avec Streamlit et DeepFace.',
-    image: '/projects/facelogin.png',
+    image: facelog,
     github: 'https://github.com/Ismail0u/facelogin',
-    demo: '',
+    demo: 'https://facelogin-8td8.onrender.com/',
   },
   {
     title: 'Kayanabinchi',
@@ -26,9 +29,9 @@ const projects = [
   {
     title: 'Quiz Educatif IA',
     description: 'Chatbot éducatif avec mode quiz et synthèse vocale, interface Streamlit.',
-    image: '/projects/quizia.png',
+    image: NIBOT,
     github: 'https://github.com/Ismail0u/quiz-educatif',
-    demo: '',
+    demo: 'https://minichatbot-python.onrender.com/',
   },
 ];
 

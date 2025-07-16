@@ -1,36 +1,41 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import IEEE from '../assets/certif/certificatIEEE1.pdf';
+import CS1 from '../assets/certif/Saylor_CS1.pdf';
+import english from '../assets/certif/Saylor_Englich.pdf';
+import pythonCert from '../assets/certif/saylor_Python.pdf';
+import dataCommuni from '../assets/certif/dataCommuni.pdf';
 
 const certifications = [
   {
-    title: 'Introduction à l’IA – IBM',
-    org: 'Coursera / IBM',
+    title: ' CS105: Introduction to Python',
+    org: 'Saylor',
+    date: '2025',
+    link: pythonCert,
+  },
+  {
+    title: ' CS101: Introduction to Computer Science I',
+    org: 'Saylor',
+    date: '2025',
+    link: CS1,
+  },
+  {
+    title: '2024 Certificate of IEEE membership',
+    org: 'IEEE',
     date: '2024',
-    link: 'https://www.coursera.org/account/accomplishments/certificate/XYZ1',
+    link: IEEE,
   },
   {
-    title: 'Développement Web avec Django',
-    org: 'OpenClassrooms',
-    date: '2023',
-    link: '',
+    title: ' ESL003: Upper-Intermediate English as a Second Language',
+    org: 'Saylor',
+    date: '2025',
+    link: english,
   },
   {
-    title: 'Cybersécurité fondamentale',
-    org: 'Cisco NetAcad',
-    date: '2024',
-    link: 'https://skillsforall.com/student/XYZ2',
-  },
-  {
-    title: 'Responsive Web Design',
-    org: 'freeCodeCamp',
-    date: '2023',
-    link: 'https://www.freecodecamp.org/certification/ton-nom/responsive-web-design',
-  },
-  {
-    title: 'JavaScript Algorithms and Data Structures',
-    org: 'freeCodeCamp',
-    date: '2024',
-    link: 'https://www.freecodecamp.org/certification/ton-nom/javascript-algorithms-and-data-structures',
+    title: ' PRDV200: Communicating with Data',
+    org: 'Saylor',
+    date: '2025',
+    link: dataCommuni,
   },
   // Tu peux en ajouter autant que tu veux...
 ];

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import cv from '../assets/certif/cv.pdf';
 
 export default function Hero() {
   return (
@@ -35,7 +36,7 @@ export default function Hero() {
           Me contacter
         </a>
         <a
-          href="/cv.pdf"
+          href={cv}
           target="_blank"
           rel="noopener noreferrer"
           className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded shadow"
