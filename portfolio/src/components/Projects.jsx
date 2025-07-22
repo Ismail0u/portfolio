@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectCard from './ProjetCard'
 
 import emigResto1 from '../assets/image/emigResto1.PNG';
-import emigResto2 from '../assets/image/emigResto2.PNG';
+import emigResto2 from '../assets/image/emigresto2.PNG';
 import facelog from '../assets/image/facelog.PNG';
 import NIBOT from '../assets/image/NIBOT.PNG';
 import abinchi from '../assets/image/C1.PNG';
