@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react'; // Ajoute MessageCircle ou un autre icône adapté
 
 export default function Footer() {
   return (
@@ -39,6 +39,15 @@ export default function Footer() {
             <Linkedin className="w-4 h-4 mr-1" />
             LinkedIn
           </a>
+          <a
+  href="https://wa.me/22789558380"
+  className="hover:text-green-600 dark:hover:text-green-400 flex items-center"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <MessageCircle className="w-4 h-4 mr-1" />
+  WhatsApp
+</a>
         </div>
       </div>
     </footer>
