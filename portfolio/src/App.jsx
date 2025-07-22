@@ -30,8 +30,8 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans transition duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 scroll-smooth">
       <Navbar />
-      <Header dark={dark} setDark={setDark} />
-      <main className="flex-grow container mx-auto px-4 py-12">
+      
+      <main className="flex-grow container max-w-screen-lg mx-auto px-4 py-12">
         <Hero />
         <About />
         <Skills />
