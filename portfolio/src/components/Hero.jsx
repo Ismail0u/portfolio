@@ -74,14 +74,18 @@ export default function Hero() {
           >
             Me contacter
           </a>
-          <a
+          <motion.a
             href={cv}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-full shadow transition duration-300"
+            download="MOUSSA_Ismael_CV_2025.pdf"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            className="relative inline-block border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-full shadow transition duration-300"
           >
+            <span className="absolute -top-3 -right-4 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              NEW
+            </span>
             Télécharger mon CV
-          </a>
+          </motion.a>
         </motion.div>
       </div>
       {/* Indicateur scroll */}
