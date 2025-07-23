@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import cv from '../assets/certif/cv.pdf';
-import profilePic from '../assets/image/image2.jpeg';
+import profilePic from '../assets/image/isma1.png';
 
 export default function Hero() {
   return (
@@ -48,7 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-4 text-xl sm:text-2xl text-gray-800 dark:text-gray-200"
         >
-          Développeur Full Stack | 💡 IA & Cybersécurité Enthousiaste
+          Développeur Full Stack | 💡Passionné par la Création de Solutions Digitales Performantes
         </motion.p>
 
         {/* Pitch rapide */}
@@ -58,7 +58,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-2 text-md sm:text-lg text-gray-600 dark:text-gray-400"
         >
-          Je conçois des interfaces modernes et performantes, avec une attention portée à la sécurité et à l'intelligence artificielle.
+          Je suis un développeur full stack passionné par la création d'applications sécurisées et intelligentes. Mon objectif ? Utiliser la technologie pour résoudre des problèmes concrets et améliorer la vie des utilisateurs.
         </motion.p>
 
         {/* Boutons */}

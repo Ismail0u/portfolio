@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import image1 from '../assets/image/isma1.png';
+import image1 from '../assets/image/image2.jpeg';
 
 export default function About() {
   return (
@@ -52,7 +52,7 @@ export default function About() {
 
             {/* Citation */}
             <p className="italic text-sm text-gray-500 mt-6">
-              "Créer des solutions utiles, durables et élégantes, voilà mon objectif."
+              "Façonner l'avenir par des solutions logicielles utiles, pérennes et esthétiques."
             </p>
           </div>
         </div>
