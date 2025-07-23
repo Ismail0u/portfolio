@@ -29,14 +29,14 @@ const projects = [
   {
     title: 'Kayanabinchi',
     description:
-      "Plateforme complète pour gérer les stocks, les réservations et le service de restauration scolaire. Pensée pour un environnement administratif.",
+      "Plateforme complète pour gérer les stocks, les réservations dans une écoless. Pensée pour un environnement administratif.",
     images: [abinchi],
     github: 'https://github.com/Ismail0u/projet_industrielEMIG',
     demo: '',
     tech: ['React', 'Django', 'MYSQL'],
   },
   {
-    title: 'Mini Chatbot IA',
+    title: 'NiBot',
     description:
       "Chatbot éducatif. Traitement NLP avec NLTK, synthèse vocale, interaction en français via Streamlit.",
     images: [NIBOT],

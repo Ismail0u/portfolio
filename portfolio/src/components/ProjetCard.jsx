@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ImageModal from './ImageModal'; // 💡 à créer
+import Tilt from 'react-parallax-tilt';
+import ImageModal from './ImageModal';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { motion } from 'framer-motion';
@@ -20,26 +21,33 @@ export default function ProjectCard({ title, description, images = [], github, d
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      {images.length > 0 && (
-        <Swiper slidesPerView={1} spaceBetween={0} className="h-48">
-          {images.map((img, idx) => (
-            <SwiperSlide key={idx}>
-              <img
-                src={img}
-                alt={`${title} ${idx + 1}`}
-                className="w-full h-48 object-cover cursor-pointer"
-                onClick={() => openModal(img)}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      )}
+      <Tilt
+        tiltMaxAngleX={10}
+        tiltMaxAngleY={10}
+        glareEnable={true}
+        glareMaxOpacity={0.2}
+        className="tilt-container"
+      >
+        {images.length > 0 && (
+          <Swiper slidesPerView={1} spaceBetween={0} className="h-48">
+            {images.map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <img
+                  src={img}
+                  alt={`${title} ${idx + 1}`}
+                  className="w-full h-48 object-cover cursor-pointer"
+                  onClick={() => openModal(img)}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </Tilt>
 
       <div className="p-5">
         <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">{title}</h3>
         <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{description}</p>
 
-        {/* Tags */}
         {tech.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
             {tech.map((tag, i) => (
@@ -53,7 +61,6 @@ export default function ProjectCard({ title, description, images = [], github, d
           </div>
         )}
 
-        {/* Links */}
         <div className="flex items-center mt-4 space-x-4">
           {github && (
             <a
@@ -79,7 +86,6 @@ export default function ProjectCard({ title, description, images = [], github, d
         </div>
       </div>
 
-      {/* Modal affichée si une image est cliquée */}
       <ImageModal isOpen={modalOpen} onClose={() => setModalOpen(false)} image={modalImage} />
     </motion.div>
   );
