@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.21",
     "framer-motion": "^12.23.5",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.525.0",
     "postcss": "^8.5.6",
     "react": "^19.1.0",
@@ -19,8 +20,10 @@
     "react-icons": "^5.5.0",
     "react-parallax-tilt": "^1.7.301",
     "react-router-dom": "^7.7.0",
+    "react-tsparticles": "^2.12.2",
     "swiper": "^11.2.10",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

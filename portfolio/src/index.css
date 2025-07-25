@@ -2,4 +2,15 @@
 html {
     scroll-behavior: smooth;
   }
-  
+
+ /* Widget Tawk très en arrière-plan */
+#tawkchat-container,
+.tawk-min-container {
+  z-index: 0 !important;
+}
+
+/* Ton footer au-dessus */
+footer {
+  position: relative;
+  z-index: 10;
+}

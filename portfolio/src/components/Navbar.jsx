@@ -8,7 +8,9 @@ const links = [
   { name: 'Parcours', href: '#timeline' },
   { name: 'Projets', href: '#projects' },
   { name: 'Certifications', href: '#certifications' },
+  { name: 'Service', href: '#services'},
   { name: 'Contact', href: '#contact' },
+
 ];
 
 export default function Navbar() {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
+
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -9,6 +9,9 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import Services from './components/Services';
+import CaseStudies from './components/CaseStudies';
+import Testimonials from './components/Testimonials';
 import './index.css'; // Assure le support des styles dark
 
 export default function App() {
@@ -38,6 +41,8 @@ export default function App() {
         <Timeline />
         <Projects />
         <Certifications />
+        <Services />
+        <CaseStudies />
         <Contact />
       </main>
       <Footer />

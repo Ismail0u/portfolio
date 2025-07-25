@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import cv from '../assets/certif/cv.pdf';
-import profilePic from '../assets/image/isma1.png';
+import profilePic from '../assets/image/isma12.jfif';
 
 export default function Hero() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   return (
     <section
       id="hero"
@@ -18,16 +20,20 @@ export default function Hero() {
 
       {/* Contenu principal */}
       <div className="relative z-10 max-w-3xl mx-auto px-4">
-        {/* Photo de profil */}
+        {/* Photo de profil avec lazy load + blur-up */}
         <motion.div
-          whileHover={{ scale: 1.9 }}
+          whileHover={{ scale: 1.65 }}
+          whileTap={{ scale: 1.35 }}
           transition={{ type: 'spring', stiffness: 300 }}
           className="mx-auto w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-lg border-4 border-blue-500 dark:border-blue-300 mb-6"
         >
           <img
             src={profilePic}
             alt="Moussa Ismael"
-            className="object-cover w-full h-full transition-transform duration-500"
+            loading="lazy"
+            onLoad={() => setImgLoaded(true)}
+            className={`object-cover w-full h-full transition-transform duration-500 
+              ${imgLoaded ? 'blur-0' : 'blur-2xl scale-110'}`}
           />
         </motion.div>
 
@@ -48,7 +54,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-4 text-xl sm:text-2xl text-gray-800 dark:text-gray-200"
         >
-          Développeur Full Stack | 💡Passionné par la Création de Solutions Digitales Performantes
+          Développeur Full Stack | 💡 J'aime construire des solutions utiles.
         </motion.p>
 
         {/* Pitch rapide */}
@@ -58,7 +64,15 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-2 text-md sm:text-lg text-gray-600 dark:text-gray-400"
         >
-          Je suis un développeur full stack passionné par la création d'applications sécurisées et intelligentes. Mon objectif ? Utiliser la technologie pour résoudre des problèmes concrets et améliorer la vie des utilisateurs.
+          Bonjour! Je suis Moussa Ismael. Je suis un développeur web qui aime créer des sites et des applications pour aider les entreprises et les personnes à mieux travailler en ligne.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-2 text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium"
+        >
+           Mon approche est simple : transformer vos idées en outils numériques fiables et faciles à utiliser.
         </motion.p>
 
         {/* Boutons */}
@@ -88,16 +102,17 @@ export default function Hero() {
           </motion.a>
         </motion.div>
       </div>
+
       {/* Indicateur scroll */}
       <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="animate-bounce text-blue-500 dark:text-blue-300 text-xl">↓</div>
-          <span className="text-sm text-gray-500 dark:text-gray-400">Scroll pour en savoir plus</span>
-        </motion.div>
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <div className="animate-bounce text-blue-500 dark:text-blue-300 text-xl">↓</div>
+        <span className="text-sm text-gray-500 dark:text-gray-400">Scroll pour en savoir plus</span>
+      </motion.div>
 
       {/* Typing animation styles */}
       <style>{`
@@ -115,6 +130,12 @@ export default function Hero() {
 
         .animate-ping-slow {
           animation: ping 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .blur-2xl {
+          filter: blur(2rem);
+        }
+        .blur-0 {
+          filter: blur(0);
         }
       `}</style>
     </section>
