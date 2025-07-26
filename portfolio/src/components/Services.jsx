@@ -1,26 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Phone, Monitor, Settings } from 'lucide-react';
+import { Code, Monitor, Settings, PenTool } from 'lucide-react';
 
 const services = [
   {
-    icon: <Code className="w-12 h-12 text-blue-500" />, 
+    icon: <Code className="w-12 h-12 text-blue-500" />,
     title: 'Développement Web',
-    description: "Création d'applications web robustes avec Django et React, adaptées à vos besoins spécifiques.",
+    description:
+      "Création d'applications web robustes avec Django et React, adaptées à vos besoins spécifiques.",
     price: 'Sur devis',
   },
   {
-    icon: <Monitor className="w-12 h-12 text-green-500" />, 
+    icon: <Monitor className="w-12 h-12 text-green-500" />,
     title: 'Création de Sites Vitrines & Présence Web',
-    description: "Sites professionnels et esthétiques pour valoriser votre activité en ligne.  Je m'assure que votre site est non seulement beau, mais aussi fonctionnel et facile à utiliser pour vos visiteurs.",
+    description:
+      "Sites professionnels et esthétiques pour valoriser votre activité en ligne. Je m'assure que votre site est non seulement beau, mais aussi fonctionnel et facile à utiliser pour vos visiteurs.",
     price: 'Sur devis',
   },
   {
-    icon: <Settings className="w-12 h-12 text-purple-500" />, 
-    title: 'Entretien et Bon Fonctionnement',
-    description: "Je veille à ce que votre présence en ligne soit toujours impeccable. Je gère les mises à jour et les petits ajustements pour que tout tourne sans accroc, vous libérant du temps pour vous concentrer sur votre activité.",
-    price: "Forfait mensuel",
-  },  
+    icon: <Settings className="w-12 h-12 text-purple-500" />,
+    title: 'Entretien & Support',
+    description:
+      "Mises à jour, sécurité et optimisation pour que votre site fonctionne sans accroc, vous libérant du temps pour votre activité.",
+    price: 'Forfait mensuel',
+  },
+  {
+    icon: <PenTool className="w-12 h-12 text-pink-500" />,
+    title: 'Infographie & Design',
+    description:
+      "Création de supports visuels professionnels (logos, flyers, posts réseaux sociaux,affiches) pour une communication digitale impactante.",
+    price: 'Sur devis',
+  },
 ];
 
 export default function Services() {
@@ -29,7 +39,7 @@ export default function Services() {
       <h2 className="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-12">
         Mes Services
       </h2>
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-w-6xl mx-auto">
         {services.map((s, i) => (
           <motion.div
             key={i}
