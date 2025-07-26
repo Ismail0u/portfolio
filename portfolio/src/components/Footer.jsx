@@ -31,6 +31,15 @@ export default function Footer() {
             GitHub
           </a>
           <a
+            href="https://wa.me/22789558380"
+            className="hover:text-green-600 dark:hover:text-green-400 flex items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle className="w-4 h-4 mr-1" />
+            WhatsApp
+          </a>
+          <a
             href="https://www.linkedin.com/in/ismael-moussa-314a78355/"
             className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center"
             target="_blank"
@@ -39,15 +48,6 @@ export default function Footer() {
             <Linkedin className="w-4 h-4 mr-1" />
             LinkedIn
           </a>
-          <a
-  href="https://wa.me/22789558380"
-  className="hover:text-green-600 dark:hover:text-green-400 flex items-center"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <MessageCircle className="w-4 h-4 mr-1" />
-  WhatsApp
-</a>
         </div>
       </div>
     </footer>
