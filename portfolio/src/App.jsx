@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Services from './components/Services';
 import CaseStudies from './components/CaseStudies';
+import BlogTeaser from './components/BlogTeaser';
 import Testimonials from './components/Testimonials';
 import './index.css'; // Assure le support des styles dark
 
@@ -39,6 +40,7 @@ export default function App() {
         <About />
         <Skills />
         <Timeline />
+        <BlogTeaser />
         <Projects />
         <Certifications />
         <Services />

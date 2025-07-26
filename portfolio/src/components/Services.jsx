@@ -30,6 +30,7 @@ const services = [
     description:
       "Création de supports visuels professionnels (logos, flyers, posts réseaux sociaux,affiches) pour une communication digitale impactante.",
     price: 'Sur devis',
+    secondary: true,
   },
 ];
 
@@ -47,8 +48,13 @@ export default function Services() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.2, duration: 0.6 }}
+            transition={{ delay: i * 0.3, duration: 0.6 }}
           >
+             {s.secondary && (
+             <span className="absolute top-4 right-4 bg-yellow-400 text-xs font-semibold text-gray-900 px-2 py-1 rounded-full">
+               Optionnel
+             </span>
+           )}
             <div className="bg-white dark:bg-gray-900 p-4 rounded-full mb-4 shadow-md">
               {s.icon}
             </div>
