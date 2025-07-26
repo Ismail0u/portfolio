@@ -1,15 +1,83 @@
+/*────────────────────────────────────*/
+/*  1. Tailwind + Google Fonts        */
+/*────────────────────────────────────*/
 @import "tailwindcss";
-html {
-    scroll-behavior: smooth;
-  }
+@import "tailwindcss/utilities";
 
- /* Widget Tawk très en arrière-plan */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+
+html {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.font-primary {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+/*────────────────────────────────────*/
+/*  2. Gradient animé pour le Hero    */
+/*────────────────────────────────────*/
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-bg-animated {
+  background: linear-gradient(
+    45deg,
+    #3b82f6,
+    #6366f1,
+    #ec4899,
+    #f97316
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  opacity: 0.3;
+}
+
+/*────────────────────────────────────*/
+/*  3. Typing + Blur Utilities        */
+/*────────────────────────────────────*/
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}
+
+.animate-typing {
+  animation: typing 2s steps(20, end), blink-caret 0.8s step-end infinite;
+}
+
+.blur-2xl {
+  filter: blur(2rem);
+}
+.blur-0 {
+  filter: blur(0);
+}
+
+/*────────────────────────────────────*/
+/*  4. Z‑Index pour Tawk & Footer     */
+/*────────────────────────────────────*/
+/* Tawk derrière tout */
 #tawkchat-container,
 .tawk-min-container {
   z-index: 0 !important;
 }
-
-/* Ton footer au-dessus */
+/* Footer au‑dessus */
 footer {
   position: relative;
   z-index: 10;
