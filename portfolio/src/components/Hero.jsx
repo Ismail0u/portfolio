@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import cv from '../assets/certif/cv.pdf';
-import profilePic from '../assets/image/isma12.jfif';
+import profilePic from '../assets/image/isma12.jpeg';
 
 export default function Hero() {
   const [imgLoaded, setImgLoaded] = useState(false);
