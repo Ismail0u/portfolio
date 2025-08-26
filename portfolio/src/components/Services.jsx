@@ -30,7 +30,7 @@ const services = [
     description:
       "Création de supports visuels professionnels (logos, flyers, posts réseaux sociaux,affiches) pour une communication digitale impactante.",
     price: 'Sur devis',
-    secondary: true,
+    //secondary: true,
   },
 ];
 
