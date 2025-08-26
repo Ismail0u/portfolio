@@ -40,6 +40,7 @@ export default function About() {
               J’ai récemment effectué un stage chez <strong>Novatech Niger</strong> (Avril–Juin 2025),
               où j'ai travaillé sur un projet  mêlant React, Django et Python.
               J’ai également effectué un stage à la <strong>Nigelec</strong> (Juillet-Septembre 2024),
+              Je suis également membre du <strong>DevByte Community</strong>.
             </p>
 
             {/* Badges technos */}

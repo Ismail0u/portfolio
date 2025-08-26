@@ -17,6 +17,11 @@ const timeline = [
     title: 'Projet personnel – FaceLogin',
     desc: 'Reconnaissance faciale avec DeepFace et Streamlit.',
   },
+  {
+    year: '2024',
+    title: 'Student Member – IEEE',
+    desc: 'Accessibilité à des ressources techniques et à un réseau professionnel mondial.',
+  },
 ];
 
 export default function Timeline() {

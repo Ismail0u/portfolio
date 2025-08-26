@@ -39,11 +39,11 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Services />
         <Timeline />
         <BlogTeaser />
         <Projects />
         <Certifications />
-        <Services />
         <CaseStudies />
         <Contact />
       </main>
