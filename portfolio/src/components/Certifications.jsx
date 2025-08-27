@@ -8,8 +8,10 @@ import CS1 from '../assets/certif/Saylor_CS1.pdf';
 import English from '../assets/certif/Saylor_Englich.pdf';
 import PythonCert from '../assets/certif/saylor_Python.pdf';
 import DataCommuni from '../assets/certif/dataCommuni.pdf';
+import OraclecertifIA from '../assets/certif/OracleCertificate.pdf';
 
 const certifications = [
+  { title: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate', org: 'Oracle University', date: '2025', pdf: OraclecertifIA },
   { title: 'CS105: Introduction to Python', org: 'Saylor', date: '2025', pdf: PythonCert },
   { title: 'CS101: Intro to Computer Science I', org: 'Saylor', date: '2025', pdf: CS1 },
   { title: 'IEEE Membership Certificate', org: 'IEEE', date: '2024', pdf: IEEE },
