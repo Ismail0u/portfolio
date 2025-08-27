@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import cv from '../assets/certif/cv.pdf';
+import cvEn from '../assets/certif/cv_en.pdf';
 import profilePic from '../assets/image/isma12.jpeg';
 
 export default function Hero() {
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // ferme la modal avec ESC
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <section
@@ -88,18 +99,77 @@ export default function Hero() {
           >
             Me contacter
           </a>
-          <motion.a
-            href={cv}
-            download="MOUSSA_Ismael_CV_2025.pdf"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            className="relative inline-block border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-full shadow transition duration-300"
+          {/* Bouton principal */}
+      <motion.button
+        onClick={() => setOpen(true)}
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="relative inline-block border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-full shadow transition duration-300"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label="Télécharger mon CV - choisissez la langue"
+      >
+        <span className="absolute -top-3 -right-4 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+          NEW
+        </span>
+        Télécharger mon CV
+      </motion.button>
+
+      {/* Modal */}
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="bg-white dark:bg-[#0b1220] rounded-lg shadow-xl w-[90%] max-w-md p-6"
           >
-            <span className="absolute -top-3 -right-4 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-              NEW
-            </span>
-            Télécharger mon CV
-          </motion.a>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+              Choisissez la langue du CV
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">
+              Voulez-vous télécharger la version française ou anglaise ?
+            </p>
+
+            <div className="flex gap-3">
+              <motion.a
+                href={cv}
+                download="MOUSSA_Ismael_CV_FR_2025.pdf"
+                whileHover={{ scale: 1.03 }}
+                className="flex-1 text-center px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
+                onClick={() => setOpen(false)}
+              >
+                Français
+              </motion.a>
+
+              <motion.a
+                href={cvEn}
+                download="MOUSSA_Ismael_Resume_EN_2025.pdf"
+                whileHover={{ scale: 1.03 }}
+                className="flex-1 text-center px-4 py-2 rounded-md border border-blue-600 bg-blue-600 text-white hover:brightness-90"
+                onClick={() => setOpen(false)}
+              >
+                English
+              </motion.a>
+            </div>
+
+            <div className="mt-4 text-right">
+              <button
+                onClick={() => setOpen(false)}
+                className="text-sm text-gray-500 hover:underline"
+              >
+                Annuler
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
         </motion.div>
       </div>
 
