@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 
 const timeline = [
   {
+    year: "Aoùt 2025 -Aujourd'hiu",
+    title: 'UI Designer et Front end DEv - DevByte Community',
+    desc: 'collabore avec une équipe de designer,devs(back et front) et projects Managers sur des pojets Open source',
+  },
+  {
     year: '2022-2025',
     title: 'Licence Génie Logiciel – EMIG',
     desc: 'Formation en développement web, mobile et ingénierie logicielle.',
