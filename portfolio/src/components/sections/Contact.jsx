@@ -216,7 +216,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         <motion.div className="text-center mb-8" initial={{ opacity: 0, y: -20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}}>
           <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Me Contacter</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             Une question ? Un projet ? N'hésitez pas à me contacter. Je réponds généralement sous 24h.
           </p>
         </motion.div>

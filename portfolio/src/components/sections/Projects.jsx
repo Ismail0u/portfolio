@@ -426,7 +426,7 @@ export default function Projects() {
           <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
             Mes Projets
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             Une sélection de mes réalisations, du web au mobile en passant par l'IA
           </p>
         </motion.div>
@@ -484,7 +484,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
+            <p className="text-gray-200 dark:text-gray-400 text-lg">
               Aucun projet dans cette catégorie pour le moment
             </p>
           </motion.div>

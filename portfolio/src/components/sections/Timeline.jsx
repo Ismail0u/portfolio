@@ -232,11 +232,11 @@ export default function Timeline() {
           initial={{ opacity: 0, y: -20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl font-bold text-blue-700 dark:text-white mb-4">
             Mon Parcours & Expériences
           </h2>
 
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             De mes études à mes expériences professionnelles, découvrez mon évolution
           </p>
         </motion.div>

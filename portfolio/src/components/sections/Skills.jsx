@@ -124,10 +124,10 @@ const SkillCard = ({ skill, index }) => {
       {/* Icon + Name */}
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-2">
-          <div className={`p-1 bg-${color}-100 dark:bg-${color}-900 rounded-lg`}>
+          <div className={`p-1 bg-${color}-800 dark:bg-${color}-900 rounded-lg`}>
             <Icon className={`w-5 h-5 text-${color}-600 dark:text-${color}-400`} />
           </div>
-          <h6 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h6 className="text-lg font-semibold text-gray-100 dark:text-white">
             {skill.name}
           </h6>
         </div>
@@ -173,7 +173,7 @@ export default function Skills() {
             Compétences Techniques
           </motion.h2>
           <motion.p
-            className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto"
+            className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -222,7 +222,7 @@ export default function Skills() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-gray-200 dark:text-gray-400 mb-4">
             💡 En constante évolution et apprentissage !
           </p>
           <a

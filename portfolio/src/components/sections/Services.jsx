@@ -195,10 +195,10 @@ const ProcessSection = () => {
   return (
     <div className="mt-10  rounded-3xl p-12">
       <div className="text-center mb-2">
-        <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-3xl font-bold text-gray-200 dark:text-white mb-2">
           Comment je travaille
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-gray-100 dark:text-gray-400 max-w-2xl mx-auto">
           Un processus simple et transparent pour garantir votre satisfaction
         </p>
       </div>
@@ -225,10 +225,10 @@ const ProcessSection = () => {
               </div>
             </div>
 
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            <h4 className="text-lg font-semibold text-gray-50 dark:text-white mb-2">
               {step.title}
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-200 dark:text-gray-400">
               {step.description}
             </p>
           </motion.div>
@@ -263,11 +263,11 @@ export default function Services() {
             Services
           </motion.span>
 
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-50 dark:text-white mb-3">
             Comment je peux vous aider
           </h2>
 
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-gray-200 dark:text-gray-400 text-lg max-w-3xl mx-auto">
             Des solutions sur mesure pour transformer vos idées en réalité digitale.
             Du concept au déploiement, je vous accompagne à chaque étape.
           </p>
