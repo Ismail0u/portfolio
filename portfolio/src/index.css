@@ -1,84 +1,544 @@
-/*────────────────────────────────────*/
-/*  1. Tailwind + Google Fonts        */
-/*────────────────────────────────────*/
+/**
+ * ============================================
+ * PORTFOLIO V2 - TECH THEME
+ * ============================================
+ * Ultra modern, futuristic design
+ * ============================================
+ */
+
+/* ============================================
+   TAILWIND IMPORTS
+   ============================================ */
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+/* ============================================
+   GOOGLE FONTS - TECH STYLE
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   ROOT & BASE
+   ============================================ */
+:root {
+  /* Tech Colors */
+  --tech-blue: #00d4ff;
+  --tech-purple: #a855f7;
+  --tech-pink: #ec4899;
+  --tech-cyan: #06b6d4;
+  
+  /* Neon Glow */
+  --glow-blue: 0 0 20px rgba(0, 212, 255, 0.5);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.5);
+  --glow-pink: 0 0 20px rgba(236, 72, 153, 0.5);
+}
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #0a0e27;
+  color: #e2e8f0;
+  position: relative;
+}
+
+/* ============================================
+   ANIMATED TECH BACKGROUND
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: 
+    linear-gradient(125deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+  animation: gradient-shift 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Grid Pattern Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Scanline Effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, 
+    transparent, 
+    rgba(0, 212, 255, 0.8), 
+    transparent
+  );
+  z-index: 9999;
+  pointer-events: none;
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* ============================================
+   TYPOGRAPHY - TECH FONTS
+   ============================================ */
+.font-tech {
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 .font-primary {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-.hero-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/*────────────────────────────────────*/
-/*  2. Gradient animé pour le Hero    */
-/*────────────────────────────────────*/
-@keyframes gradientBG {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   NEON TEXT EFFECTS
+   ============================================ */
+.text-neon-blue {
+  color: var(--tech-blue);
+  text-shadow: 
+    0 0 10px rgba(0, 212, 255, 0.8),
+    0 0 20px rgba(0, 212, 255, 0.6),
+    0 0 30px rgba(0, 212, 255, 0.4);
+}
+
+.text-neon-purple {
+  color: var(--tech-purple);
+  text-shadow: 
+    0 0 10px rgba(168, 85, 247, 0.8),
+    0 0 20px rgba(168, 85, 247, 0.6),
+    0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+.text-neon-pink {
+  color: var(--tech-pink);
+  text-shadow: 
+    0 0 10px rgba(236, 72, 153, 0.8),
+    0 0 20px rgba(236, 72, 153, 0.6),
+    0 0 30px rgba(236, 72, 153, 0.4);
+}
+
+/* ============================================
+   GLASSMORPHISM - TECH STYLE
+   ============================================ */
+.glass-tech {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-tech:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(0, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   TECH CARD EFFECTS
+   ============================================ */
+.tech-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--tech-blue),
+    var(--tech-purple),
+    var(--tech-pink),
+    var(--tech-cyan)
+  );
+  border-radius: 12px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s;
+  animation: tech-border 3s linear infinite;
+  background-size: 200% 200%;
+}
+
+.tech-card:hover::before {
+  opacity: 0.5;
+}
+
+@keyframes tech-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-.hero-bg-animated {
-  background: linear-gradient(
-    45deg,
-    #3b82f6,
-    #6366f1,
-    #ec4899,
-    #f97316
-  );
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+/* ============================================
+   NEON BUTTON
+   ============================================ */
+.btn-neon {
+  position: relative;
+  padding: 12px 32px;
+  background: transparent;
+  border: 2px solid var(--tech-blue);
+  color: var(--tech-blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.btn-neon::before {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: -10;
-  opacity: 0.3;
+  background: var(--tech-blue);
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  z-index: -1;
 }
 
-/*────────────────────────────────────*/
-/*  3. Typing + Blur Utilities        */
-/*────────────────────────────────────*/
-@keyframes typing {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-@keyframes blink-caret {
-  50% { border-color: transparent; }
+.btn-neon:hover {
+  color: #0a0e27;
+  box-shadow: var(--glow-blue);
+  transform: translateY(-2px);
 }
 
-.animate-typing {
-  animation: typing 2s steps(20, end), blink-caret 0.8s step-end infinite;
+.btn-neon:hover::before {
+  transform: translateX(0);
 }
 
-.blur-2xl {
-  filter: blur(2rem);
-}
-.blur-0 {
-  filter: blur(0);
+/* ============================================
+   TECH SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-/*────────────────────────────────────*/
-/*  4. Z‑Index pour Tawk & Footer     */
-/*────────────────────────────────────*/
-/* Tawk derrière tout */
-#tawkchat-container,
-.tawk-min-container {
-  z-index: 0 !important;
+::-webkit-scrollbar-track {
+  background: #0f1629;
+  border-left: 1px solid rgba(0, 212, 255, 0.1);
 }
-/* Footer au‑dessus */
-footer {
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--tech-blue),
+    var(--tech-purple)
+  );
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--tech-cyan),
+    var(--tech-blue)
+  );
+  box-shadow: var(--glow-blue);
+}
+
+/* ============================================
+   TEXT SELECTION
+   ============================================ */
+::selection {
+  background-color: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+  text-shadow: var(--glow-blue);
+}
+
+/* ============================================
+   TECH ANIMATIONS
+   ============================================ */
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Data Stream */
+@keyframes data-stream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.data-stream {
+  position: fixed;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--tech-blue),
+    transparent
+  );
+  animation: data-stream 3s linear infinite;
+}
+
+/* Hologram Effect */
+.hologram {
   position: relative;
-  z-index: 10;
+}
+
+.hologram::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: hologram-scan 2s linear infinite;
+}
+
+@keyframes hologram-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Glitch Text */
+.glitch-tech {
+  position: relative;
+  animation: glitch-tech 5s infinite;
+}
+
+@keyframes glitch-tech {
+  0%, 90%, 100% {
+    transform: translate(0);
+  }
+  91% {
+    transform: translate(-2px, 2px);
+  }
+  92% {
+    transform: translate(2px, -2px);
+  }
+  93% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+/* ============================================
+   CYBER GRID
+   ============================================ */
+.cyber-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 212, 255, 0.03) 0px,
+      transparent 1px,
+      transparent 40px,
+      rgba(0, 212, 255, 0.03) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 212, 255, 0.03) 0px,
+      transparent 1px,
+      transparent 40px,
+      rgba(0, 212, 255, 0.03) 41px
+    );
+  animation: cyber-grid-move 20s linear infinite;
+}
+
+@keyframes cyber-grid-move {
+  0% { transform: perspective(500px) rotateX(60deg) translateZ(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateZ(100px); }
+}
+
+/* ============================================
+   LOADING TECH
+   ============================================ */
+.loader-tech {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--tech-blue);
+  border-radius: 50%;
+  animation: spin-tech 1s linear infinite;
+  box-shadow: var(--glow-blue);
+}
+
+@keyframes spin-tech {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   TECH SECTION DIVIDER
+   ============================================ */
+.section-divider-tech {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--tech-blue),
+    var(--tech-purple),
+    var(--tech-pink),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: divider-flow 3s linear infinite;
+}
+
+@keyframes divider-flow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE TECH
+   ============================================ */
+@media (max-width: 640px) {
+  body::after {
+    background-size: 30px 30px;
+  }
+  
+  .text-neon-blue,
+  .text-neon-purple,
+  .text-neon-pink {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   FOCUS STYLES - TECH
+   ============================================ */
+*:focus-visible {
+  outline: 2px solid var(--tech-blue);
+  outline-offset: 2px;
+  box-shadow: var(--glow-blue);
+}
+
+/* ============================================
+   TECH UTILITIES
+   ============================================ */
+.blur-tech {
+  backdrop-filter: blur(10px);
+}
+
+.shadow-neon-blue {
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+.shadow-neon-purple {
+  box-shadow: 
+    0 0 20px rgba(168, 85, 247, 0.3),
+    0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.border-neon-blue {
+  border-color: var(--tech-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  body::before,
+  body::after,
+  .scanline,
+  .data-stream,
+  .cyber-grid {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }
