@@ -3,7 +3,6 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { motion } from 'framer-motion';
-import nibot from '../../assets/image/NIBOT.PNG';
 
 const caseStudies = [
   {
@@ -14,7 +13,7 @@ const caseStudies = [
       "Conception d’un mini chatbot éducatif en Streamlit ; base de données JSON maison + NLP (NLTK) pour répondre à des questions locales et synthèse vocale.",
     results:
       "Prototype en ligne avec 0 % de downtime, réponses en < 2 s, roadmap d’enrichissement continu de la base.",
-    images: [nibot], // tableau même pour un seul élément
+    images: ['/assets/image/NIBOT.PNG'], // tableau même pour un seul élément
   },
 ];
 
