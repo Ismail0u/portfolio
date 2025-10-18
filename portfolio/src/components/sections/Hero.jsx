@@ -4,7 +4,7 @@ import { Download, Mail, Github, Linkedin, Code, Zap, Rocket, Star } from 'lucid
 import Tilt from 'react-parallax-tilt';
 import { PERSONAL_INFO , SOCIAL_LINKS } from '../../constants/personalInfo';
 import { trackEvent } from '../../utils';
-import GlitchText from '../common/GlitchText';
+import GlitchText from '../common/glitchText';
 
 /**
  * ============================================
