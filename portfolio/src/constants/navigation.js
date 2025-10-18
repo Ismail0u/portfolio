@@ -9,5 +9,4 @@ export const NAV_LINKS = [
   { id: 'timeline', label: 'Parcours', href: '#timeline' },
   { id: 'projects', label: 'Projets', href: '#projects' },
   { id: 'certifications', label: 'Certifications', href: '#certifications' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
 ];

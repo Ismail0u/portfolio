@@ -1,146 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    <!-- Titre optimisé (≤ 60 caractères) -->
-    <title>Moussa Ismael | Développeur Full‑Stack Niamey – React, Django, IA</title>
-  
-    <!-- Favicon personnalisé -->
-    <link rel="icon" type="image/png" href="./src/assets/image/isma1.png" />
-  
-    <!-- Meta description et mots‑clés -->
-    <meta name="description" content="Moussa Ismael, développeur Full‑Stack à Niamey : 
-    React, Django, React Native & IA. J’aide les entreprises à transformer leurs idées en applications web et mobiles performantes." />
-    <meta name="keywords" content="développeur full-stack Niamey, React developer Niger, Django, IA, cybersécurité, React Native" />
-   
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://portfolio-smael.vercel.app/" />
-  
-    <!-- Open Graph pour Facebook, LinkedIn… -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="Moussa Ismael | Développeur Full‑Stack Niamey" />
-    <meta property="og:description" content="J’aide les entreprises à transformer leurs idées en applications web et mobiles performantes." />
-    <meta property="og:url"         content="https://portfolio-smael.vercel.app/" />
-    <meta property="og:image"       content="https://portfolio-smael.vercel.app/og-image.png" />
-  
-    <!-- Twitter Card -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="Moussa Ismael | Développeur Full‑Stack Niamey" />
-    <meta name="twitter:description" content="J’aide les entreprises à transformer leurs idées en applications web et mobiles performantes." />
-    <meta name="twitter:image"       content="https://portfolio-smael.vercel.app/og-image.png" />
-  
-    <!-- Structured Data JSON‑LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Moussa Ismael",
-      "url": "https://portfolio-smael.vercel.app/",
-      "jobTitle": "Développeur Full‑Stack",
-      "knowsAbout": ["React", "Django", "React Native", "Intelligence Artificielle", "Cybersécurité"],
-      "sameAs": [
-        "https://github.com/Ismail0u",
-        "https://www.linkedin.com/in/ismael-moussa-314a78355/"
-      ]
-    }
-    </script>
-    <!-- Offre cataloguée de tes services -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "OfferCatalog",
-        "name": "Services de développement Moussa Ismael",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Développement Web",
-              "description": "Applications web robustes avec Django et React."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Sites Vitrines & Présence Web",
-              "description": "Sites web professionnels, esthétiques et responsive."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Entretien & Support",
-              "description": "Mises à jour, sécurité et optimisation continue."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Infographie & Design",
-              "description": "Supports visuels : logos, flyers, posts réseaux sociaux."
-            }
-          }
-        ]
-      }
-      </script>
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "https://portfolio-smael.vercel.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "À propos",
-              "item": "https://portfolio-smael.vercel.app/#about"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Compétences",
-              "item": "https://portfolio-smael.vercel.app/#skills"
-            }
-          ]
-        }
-        </script>
-        
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-06VERW47V6"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    gtag('config', 'G-06VERW47V6');
-    </script>
+    <!-- Minimal HTML head: SEO (title, meta, OG, JSON-LD, canonical...) handled by SEO component -->
+    <!-- Favicon (place the file in public/assets/image/isma1.png) -->
+    <link rel="icon" type="image/png" href="/src/assets/image/isma1.png" />
+
+    <!-- Preconnect for fonts & important domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+
+    <!-- Tech / Dev font + UI font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Minimal theme-color (can be overridden by SEO or meta tags injected client-side) -->
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <!-- Recommended: keep index.html minimal & let React (SEO component) inject page-specific meta tags -->
+    <!-- If you need analytics, initialize GA inside React (controlled by VITE_ENABLE_ANALYTICS) -->
   </head>
-  <body>
+
+  <body class="antialiased">
     <div id="root"></div>
+
+    <!-- Vite entry -->
     <script type="module" src="/src/main.jsx"></script>
-        <!--Start of Tawk.to Script-->
+
+    <!-- Live chat / Tawk (optional) -->
     <script type="text/javascript">
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/68834efbdb7610192eeaabfc/1j10ep2j3';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/68834efbdb7610192eeaabfc/1j10ep2j3';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
       })();
-      </script>
-      <!--End of Tawk.to Script-->
+    </script>
   </body>
 </html>

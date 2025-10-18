@@ -3,7 +3,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { motion } from 'framer-motion';
-import nibot from '../assets/image/NIBOT.PNG';
+import nibot from '../../assets/image/NIBOT.PNG';
 
 const caseStudies = [
   {
