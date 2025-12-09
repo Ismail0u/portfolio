@@ -88,7 +88,29 @@ const PROJECTS_DATA = [
     ],
   },
   {
-    id: 4,
+    id: 4, // Assurez-vous que l'ID est unique
+    title: 'Ledger Pro',
+    slug: 'ledger-pro',
+    description: "PWA de gestion commerciale 100% offline avec OCR intégré pour la digitalisation des transactions.",
+    longDescription: "Progressive Web App (PWA) modulaire pour la gestion commerciale. Utilise React et TypeScript avec IndexedDB pour un fonctionnement 100% hors ligne. Intègre Tesseract.js (OCR) pour digitaliser automatiquement les cahiers de commerce.",
+    images: ['/assets/image/ledgerPro.PNG', '/assets/image/ledgerPro1.PNG'], // À adapter si tu as une image
+    github: 'https://github.com/Ismail0u/ma_boutique',
+    demo: 'https://ma-boutique-rqs9-ro2vdb5gh-moussa-ismaels-projects.vercel.app/',
+    tech: ['React', 'TypeScript', 'IndexedDB', 'PWA', 'Tesseract.js'],
+    category: 'frontend',
+    featured: true,
+    year: '2025',
+    status: 'completed',
+    features: [
+      'Fonctionnement 100% offline',
+      'Reconnaissance optique de caractères (OCR)',
+      'Calcul des balances clients/fournisseurs',
+      'Module de facturation imprimable',
+      'Score Lighthouse PWA > 90',
+    ],
+  },
+  {
+    id: 5,
     title: 'NiBot',
     slug: 'nibot',
     description: "Chatbot éducatif avec traitement NLP, synthèse vocale et interaction en français.",
