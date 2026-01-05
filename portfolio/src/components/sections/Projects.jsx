@@ -95,7 +95,7 @@ const PROJECTS_DATA = [
     longDescription: "Progressive Web App (PWA) modulaire pour la gestion commerciale. Utilise React et TypeScript avec IndexedDB pour un fonctionnement 100% hors ligne. Intègre Tesseract.js (OCR) pour digitaliser automatiquement les cahiers de commerce.",
     images: ['/assets/image/ledgerPro.PNG', '/assets/image/ledgerPro1.PNG'],
     github: 'https://github.com/Ismail0u/ma_boutique',
-    demo: 'https://ma-boutique-rqs9-ro2vdb5gh-moussa-ismaels-projects.vercel.app/',
+    demo: 'https://ma-boutique-delta.vercel.app/',
     tech: ['React', 'TypeScript', 'IndexedDB', 'PWA', 'Tesseract.js'],
     category: 'frontend',
     featured: false,
