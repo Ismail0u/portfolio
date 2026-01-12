@@ -223,7 +223,7 @@ export default function Skills() {
           viewport={{ once: true }}
         >
           <p className="text-gray-200 dark:text-gray-400 mb-4">
-            💡 En constante évolution et apprentissage !
+            En constante évolution et apprentissage !
           </p>
           <a
             href="https://github.com/Ismail0u"

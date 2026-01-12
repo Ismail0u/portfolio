@@ -268,8 +268,8 @@ export default function Services() {
           </h2>
 
           <p className="text-gray-200 dark:text-gray-400 text-lg max-w-3xl mx-auto">
-            Des solutions sur mesure pour transformer vos idées en réalité digitale.
-            Du concept au déploiement, je vous accompagne à chaque étape.
+            Des solutions simples, adapter pour transformer vos idées en réalité digitale.
+            Du concept au déploiement, Nous vous accompagnons à chaque étape.
           </p>
         </motion.div>
 
