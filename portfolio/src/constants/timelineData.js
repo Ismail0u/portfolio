@@ -5,8 +5,8 @@ export const TIMELINE = [
     {
     id: 'Nexcellus',
     year: "Janvier 2026 - Aujourd'hui",
-    title: 'UI Designer Dévellopeur web et mobile',
-    description: `Collaboration avec l' équipe de Nexcellus, afin de produire des resultats aux 
+    title: 'Dévelopeur web et mobile',
+    description: `Collaboration avec l'équipe de Nexcellus, afin de produire des resultats aux 
     différentes suggestions.`,
     type: 'work',
   },
