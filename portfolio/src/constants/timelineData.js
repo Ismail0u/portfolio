@@ -11,6 +11,13 @@ export const TIMELINE = [
     type: 'work',
   },
   {
+    id: 'emig2',
+    year: "2025-Aujourd'hui",
+    title: 'Master Génie Logiciel – EMIG',
+    description: 'Formation en développement web, mobile et ingénierie logicielle.',
+    type: 'education',
+  },
+  {
     id: 'devbyte',
     year: "Août 2025 - Aujourd'hui",
     title: 'UI Designer & Front-end Dev - DevByte Community',
