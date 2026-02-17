@@ -6,8 +6,8 @@ export const TIMELINE = [
     id: 'Nexcellus',
     year: "Janvier 2026 - Aujourd'hui",
     title: 'Dévelopeur web et mobile',
-    description: `Collaboration avec l'équipe de Nexcellus, afin de produire des resultats aux 
-    différentes suggestions.`,
+    description: `Collaboration avec l'équipe de Nexcellus, afin de proposer des solutions digitales et favoriser la digitalisation de la structure
+    `,
     type: 'work',
   },
   {
