@@ -40,9 +40,7 @@ const SKILL_ICONS = {
   MySQL: SiMysql,
   PostgreSQL: SiPostgresql,
   Streamlit: SiStreamlit,
-  NLTK: Brain,
-  Figma: SiFigma,
-  Photoshop: SiAdobephotoshop,
+  
 };
 
 // ============================================
