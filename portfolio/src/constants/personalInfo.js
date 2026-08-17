@@ -3,18 +3,26 @@
 // ============================================
 export const PERSONAL_INFO = {
   name: 'Moussa Ismael',
-  title: 'Développeur Full Stack',
-  tagline: '💡 J\'aime construire des solutions utiles.',
+  title: 'Software Engineer',
+  domains: ['Software Engineering', 'AI', 'Cloud & DevOps', 'Cybersecurity'],
+  tagline: 'I build intelligent, scalable and reliable digital products.',
   email: 'moussaisma05@gmail.com',
   phone: '+22789558380',
   location: 'Niamey, Niger',
-  
-  bio: `Bonjour! Je suis Moussa Ismael. Je suis un développeur web qui aime créer 
-  des sites et des applications pour aider les entreprises et les personnes à 
-  mieux travailler en ligne.`,
-  
-  pitch: `Mon approche est simple : transformer vos idées en outils numériques 
-  fiables et faciles à utiliser.`,
+
+  bioFr: `Bonjour ! Je suis Moussa Ismael, Software Engineer basé à Niamey. Je conçois des 
+  produits numériques intelligents, scalables et fiables — des applications web full-stack 
+  aux outils assistés par IA — avec une attention particulière portée à l'architecture et à 
+  la sécurité.`,
+  bioEn: `Hi! I'm Moussa Ismael, a Software Engineer based in Niamey. I design intelligent, 
+  scalable and reliable digital products — from full-stack web applications to AI-assisted 
+  tools — with a strong focus on clean architecture and secure delivery.`,
+
+  pitchFr: `Je conçois des produits numériques intelligents, scalables et fiables — des applications
+  web full-stack aux outils assistés par IA — avec une attention portée à l'architecture propre
+  et à la sécurité.`,
+  pitchEn: `I build intelligent, scalable and reliable digital products — from full-stack
+  web applications to AI-assisted tools — with an eye for clean architecture and secure delivery.`,
 };
 
 // ============================================

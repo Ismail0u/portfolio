@@ -1,61 +1,41 @@
 // ============================================
-// SERVICES DATA
+// SERVICES DATA (bilingual: *Fr / *En fields)
 // ============================================
 export const SERVICES = [
   {
     id: 'web-dev',
-    title: 'Développement Web',
-    description: `Création d'applications web robustes avec Django et React, 
-    adaptées à vos besoins spécifiques.`,
+    titleFr: 'Développement Web',
+    titleEn: 'Web Development',
+    descriptionFr: "Création d'applications web robustes avec Django et React, adaptées à vos besoins spécifiques.",
+    descriptionEn: 'Building robust web applications with Django and React, tailored to your specific needs.',
     icon: 'Code',
-    price: 'Sur devis',
-    features: [
-      'Applications web sur mesure',
-      'Architecture scalable',
-      'Performance optimisée',
-      'Responsive design',
-    ],
+    priceKey: 'onQuote',
   },
   {
     id: 'website',
-    title: 'Sites Vitrines & Présence Web',
-    description: `Sites professionnels et esthétiques pour valoriser votre 
-    activité en ligne.`,
+    titleFr: 'Sites Vitrines & Présence Web',
+    titleEn: 'Websites & Web Presence',
+    descriptionFr: 'Sites professionnels et esthétiques pour valoriser votre activité en ligne.',
+    descriptionEn: 'Professional, polished websites to showcase your business online.',
     icon: 'Monitor',
-    price: 'Sur devis',
-    features: [
-      'Design moderne',
-      'SEO optimisé',
-      'Mobile-first',
-      'Performance web',
-    ],
+    priceKey: 'onQuote',
   },
   {
     id: 'maintenance',
-    title: 'Entretien & Support',
-    description: `Mises à jour, sécurité et optimisation pour un site 
-    sans accroc.`,
+    titleFr: 'Entretien & Support',
+    titleEn: 'Maintenance & Support',
+    descriptionFr: 'Mises à jour, sécurité et optimisation pour un site sans accroc.',
+    descriptionEn: 'Updates, security, and optimization to keep your site running smoothly.',
     icon: 'Settings',
-    price: 'Forfait mensuel',
-    features: [
-      'Updates régulières',
-      'Monitoring 24/7',
-      'Backups automatiques',
-      'Support technique',
-    ],
+    priceKey: 'monthlyPlan',
   },
   {
     id: 'design',
-    title: 'Infographie & Design',
-    description: `Supports visuels professionnels pour une communication 
-    digitale impactante.`,
+    titleFr: 'Infographie & Design',
+    titleEn: 'Graphic & UI Design',
+    descriptionFr: 'Supports visuels professionnels pour une communication digitale impactante.',
+    descriptionEn: 'Professional visual assets for impactful digital communication.',
     icon: 'PenTool',
-    price: 'Sur devis',
-    features: [
-      'Logos & identité visuelle',
-      'Flyers & affiches',
-      'Posts réseaux sociaux',
-      'UI/UX design',
-    ],
+    priceKey: 'onQuote',
   },
 ];
