@@ -1,30 +1,20 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../../constants/personalInfo';
 import { isValidEmail, isValidPhone, trackEvent } from '../../utils';
-import { useIntersectionObserver } from '../../hooks';
+import { SectionHeading } from './Hero';
 
-/* --- helpers --- */
-const MAX_LENGTHS = {
-  name: 100,
-  email: 254,
-  phone: 30,
-  subject: 150,
-  message: 1200,
-};
+/* --- helpers (inchangés) --- */
+const MAX_LENGTHS = { name: 100, email: 254, phone: 30, subject: 150, message: 1200 };
 
 function sanitizeInput(s = '') {
-  return String(s || '')
-    .replace(/(\r|\n|\r\n)/g, ' ')
-    .replace(/[<>]/g, '')
-    .trim();
+  return String(s || '').replace(/(\r|\n|\r\n)/g, ' ').replace(/[<>]/g, '').trim();
 }
-
 function limitField(s = '', max = 200) {
   return String(s || '').slice(0, max);
 }
-
 function canSubmit(throttleMs = 15000) {
   try {
     const key = 'contact_last_submit';
@@ -38,15 +28,23 @@ function canSubmit(throttleMs = 15000) {
   }
 }
 
-/* Subcomponents */
-const InputField = ({ label, name, type = 'text', value, onChange, error, placeholder, required = false, rows, maxLength }) => {
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: 'easeOut' },
+  }),
+};
+
+const InputField = ({ label, name, type = 'text', value, onChange, error, placeholder, required, rows, maxLength }) => {
   const InputComponent = rows ? 'textarea' : 'input';
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-        {label}{required && <span className="text-red-500 ml-1">*</span>}
+    <div className="space-y-1.5">
+      <label className="block text-xs font-medium text-white/50">
+        {label}
+        {required && <span className="text-accent2 ml-1">*</span>}
       </label>
-
       <InputComponent
         type={type}
         name={name}
@@ -55,27 +53,20 @@ const InputField = ({ label, name, type = 'text', value, onChange, error, placeh
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        className={`
-          w-full px-4 py-2 rounded-lg border-2 transition-all
-          bg-white dark:bg-gray-800
-          text-gray-900 dark:text-white
-          placeholder-gray-400 dark:placeholder-gray-500
-          focus:outline-none focus:ring-2
-          ${error
-            ? 'border-red-300 dark:border-red-700 focus:border-red-500 focus:ring-red-200'
-            : 'border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-200'
-          }
-        `}
+        className={`w-full px-3.5 py-2.5 rounded-lg bg-white/[0.03] border text-sm text-white placeholder-white/25 transition-colors focus:outline-none ${
+          error ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-accent'
+        }`}
       />
       <AnimatePresence>
         {error && (
           <motion.p
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="text-sm text-red-600 dark:text-red-400 flex items-center"
+            exit={{ opacity: 0, y: -6 }}
+            className="text-xs text-red-400 flex items-center gap-1"
           >
-            <AlertCircle className="w-4 h-4 mr-1" />{error}
+            <AlertCircle className="w-3.5 h-3.5" />
+            {error}
           </motion.p>
         )}
       </AnimatePresence>
@@ -83,85 +74,67 @@ const InputField = ({ label, name, type = 'text', value, onChange, error, placeh
   );
 };
 
-const ContactInfoCard = ({ icon: Icon, label, value, href, delay = 0 }) => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.5 });
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target={href.startsWith('http') ? '_blank' : undefined}
-      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      initial={{ opacity: 0, x: -20 }}
-      animate={isVisible ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay }}
-      whileHover={{ scale: 1.05, x: 5 }}
-      className="flex items-center space-x-4 p-2 bg-blue-50 dark:bg-gray-800 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors group"
-    >
-      <div className="p-3 bg-blue-600 text-white rounded-lg group-hover:scale-110 transition-transform">
-        <Icon className="w-5 h-5" />
-      </div>
-      <div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">{label}</p>
-        <p className="text-sm text-gray-900 dark:text-white font-semibold">{value}</p>
-      </div>
-    </motion.a>
-  );
-};
-
-const SuccessMessage = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.9 }}
-    className="bg-green-50 dark:bg-green-900/20 border-2 border-green-500 dark:border-green-700 rounded-xl p-6 text-center"
+const ContactInfoRow = ({ icon: Icon, label, value, href }) => (
+  <a
+    href={href}
+    target={href.startsWith('http') ? '_blank' : undefined}
+    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+    className="flex items-center gap-3 py-3 border-b border-white/10 hover:border-white/20 transition-colors group"
   >
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ type: 'spring', stiffness: 200 }}
-      className="inline-block p-4 bg-green-100 dark:bg-green-900 rounded-full mb-4"
-    >
-      <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400" />
-    </motion.div>
-    <h3 className="text-2xl font-bold text-green-900 dark:text-green-100 mb-2">Message envoyé !</h3>
-    <p className="text-green-700 dark:text-green-300">Merci pour votre message. Je vous répondrai dans les plus brefs délais.</p>
+    <Icon className="w-4 h-4 text-white/40 group-hover:text-accent-soft transition-colors" />
+    <div>
+      <p className="text-[11px] text-white/40">{label}</p>
+      <p className="text-sm text-white font-medium">{value}</p>
+    </div>
+  </a>
+);
+
+const SuccessMessage = ({ t }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.96 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.96 }}
+    className="rounded-xl border border-accent/30 bg-accent/10 p-6 text-center"
+  >
+    <CheckCircle className="w-8 h-8 text-accent-soft mx-auto mb-3" />
+    <h3 className="font-display font-semibold text-white mb-1">{t('contact.successTitle')}</h3>
+    <p className="text-sm text-white/50">{t('contact.successBody')}</p>
   </motion.div>
 );
 
-/* Main component */
 export default function Contact() {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '', website: '' }); // honeypot
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '', website: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Le nom est requis';
-    else if (formData.name.trim().length < 2) newErrors.name = 'Le nom doit contenir au moins 2 caractères';
-    if (!formData.email.trim()) newErrors.email = 'L\'email est requis';
-    else if (!isValidEmail(formData.email)) newErrors.email = 'Email invalide';
-    if (formData.phone && !isValidPhone(formData.phone)) newErrors.phone = 'Numéro de téléphone invalide';
-    if (!formData.message.trim()) newErrors.message = 'Le message est requis';
-    else if (formData.message.trim().length < 10) newErrors.message = 'Le message doit contenir au moins 10 caractères';
+    if (!formData.name.trim()) newErrors.name = t('contact.errNameRequired');
+    else if (formData.name.trim().length < 2) newErrors.name = t('contact.errNameLength');
+    if (!formData.email.trim()) newErrors.email = t('contact.errEmailRequired');
+    else if (!isValidEmail(formData.email)) newErrors.email = t('contact.errEmailInvalid');
+    if (formData.phone && !isValidPhone(formData.phone)) newErrors.phone = t('contact.errPhoneInvalid');
+    if (!formData.message.trim()) newErrors.message = t('contact.errMessageRequired');
+    else if (formData.message.trim().length < 10) newErrors.message = t('contact.errMessageLength');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Honeypot
-    if (formData.website) return; 
-
-    if (!canSubmit(15000)) { setErrors({ submit: 'Veuillez patienter avant de renvoyer le formulaire.' }); return; }
+    if (formData.website) return; // honeypot
+    if (!canSubmit(15000)) {
+      setErrors({ submit: t('contact.errThrottle') });
+      return;
+    }
     if (!validate()) return;
 
     setIsSubmitting(true);
@@ -186,7 +159,7 @@ export default function Contact() {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: payload.toString()
+        body: payload.toString(),
       });
 
       if (res.ok) {
@@ -194,75 +167,93 @@ export default function Contact() {
         setFormData({ name: '', email: '', phone: '', subject: '', message: '', website: '' });
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
-        setErrors({ submit: 'Échec de l’envoi — vérifie la console.' });
-        console.error('Form submission failed:', res.status, await res.text());
+        setErrors({ submit: t('contact.errSubmitFailed') });
       }
     } catch (err) {
-      console.error('Error submitting form:', err);
-      setErrors({ submit: 'Une erreur réseau est survenue. Réessayez plus tard.' });
+      setErrors({ submit: t('contact.errNetwork') });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
-    { icon: Phone, label: 'Téléphone', value: PERSONAL_INFO.phone, href: `tel:${PERSONAL_INFO.phone}` },
-    { icon: MapPin, label: 'Localisation', value: PERSONAL_INFO.location, href: 'https://www.google.com/maps/place/Niamey' },
+    { icon: Mail, label: t('contact.labelEmail'), value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
+    { icon: Phone, label: t('contact.labelPhone'), value: PERSONAL_INFO.phone, href: `tel:${PERSONAL_INFO.phone}` },
+    { icon: MapPin, label: t('contact.labelLocation'), value: PERSONAL_INFO.location, href: 'https://www.google.com/maps/place/Niamey' },
   ];
 
   return (
-    <section id="contact" className="my-20 px-4" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-8" initial={{ opacity: 0, y: -20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}}>
-          <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Me Contacter</h2>
-          <p className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Une question ? Un projet ? N'hésitez pas à me contacter. Je réponds généralement sous 24h.
-          </p>
+    <section id="contact" className="py-16 sm:py-24">
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+        <SectionHeading top={t('contact.headingTop')} bottom={t('contact.headingBottom')} />
+      </motion.div>
+
+      <div className="mt-10 grid md:grid-cols-2 gap-12 max-w-3xl">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0.1}>
+          {contactInfo.map((info) => (
+            <ContactInfoRow key={info.label} {...info} />
+          ))}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {[
+              { href: SOCIAL_LINKS.github, label: 'GitHub' },
+              { href: SOCIAL_LINKS.linkedin, label: 'LinkedIn' },
+              { href: SOCIAL_LINKS.whatsapp, label: 'WhatsApp' },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs px-3 py-1.5 rounded-full border border-white/15 text-white/60 hover:border-white/40 hover:text-white transition-colors"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <motion.div className="space-y-8" initial={{ opacity: 0, x: -30 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }}>
-            <div className="space-y-5">
-              {contactInfo.map((info, i) => <ContactInfoCard key={i} {...info} delay={i * 0.1} />)}
-            </div>
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Suivez-moi sur les réseaux</h3>
-              <div className="flex flex-wrap gap-3">
-                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center px-3 py-1 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">GitHub</a>
-                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">LinkedIn</a>
-                <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center px-2 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">WhatsApp</a>
-              </div>
-            </div>
-          </motion.div>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0.2}>
+          <AnimatePresence mode="wait">
+            {isSuccess ? (
+              <SuccessMessage key="success" t={t} />
+            ) : (
+              <motion.form key="form" onSubmit={handleSubmit} className="space-y-4">
+                <InputField label={t('contact.name')} name="name" value={formData.name} onChange={handleChange} error={errors.name} placeholder={t('contact.namePlaceholder')} required maxLength={MAX_LENGTHS.name} />
+                <InputField label={t('contact.email')} name="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} placeholder="vous@example.com" required maxLength={MAX_LENGTHS.email} />
+                <InputField label={t('contact.phone')} name="phone" type="tel" value={formData.phone} onChange={handleChange} error={errors.phone} placeholder={t('contact.phonePlaceholder')} maxLength={MAX_LENGTHS.phone} />
+                <InputField label={t('contact.subject')} name="subject" value={formData.subject} onChange={handleChange} error={errors.subject} placeholder={t('contact.subjectPlaceholder')} maxLength={MAX_LENGTHS.subject} />
+                <InputField label={t('contact.message')} name="message" value={formData.message} onChange={handleChange} error={errors.message} placeholder={t('contact.messagePlaceholder')} rows={4} required maxLength={MAX_LENGTHS.message} />
 
-          <motion.div initial={{ opacity: 0, x: 30 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
-            <AnimatePresence mode="wait">
-              {isSuccess ? (
-                <SuccessMessage key="success" />
-              ) : (
-                <motion.form key="form" onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 space-y-3">
-                  <InputField label="Nom complet" name="name" value={formData.name} onChange={handleChange} error={errors.name} placeholder="ISmael yunus" required maxLength={MAX_LENGTHS.name} />
-                  <InputField label="Email" name="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} placeholder="ismael@example.com" required maxLength={MAX_LENGTHS.email} />
-                  <InputField label="Téléphone" name="phone" type="tel" value={formData.phone} onChange={handleChange} error={errors.phone} placeholder="+227 XX XX XX XX" maxLength={MAX_LENGTHS.phone} />
-                  <InputField label="Sujet" name="subject" value={formData.subject} onChange={handleChange} error={errors.subject} placeholder="De quoi voulez-vous parler ?" maxLength={MAX_LENGTHS.subject} />
-                  <InputField label="Message" name="message" value={formData.message} onChange={handleChange} error={errors.message} placeholder="Décrivez votre projet ou votre demande..." rows={3} required maxLength={MAX_LENGTHS.message} />
-                  
-                  {/* Honeypot field */}
-                  <input type="text" name="website" value={formData.website} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" />
+                <input type="text" name="website" value={formData.website} onChange={handleChange} style={{ display: 'none' }} autoComplete="off" tabIndex={-1} />
 
-                  {errors.submit && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-red-600 dark:text-red-400 flex items-center">
-                    <AlertCircle className="w-4 h-4 mr-1" />{errors.submit}
-                  </motion.p>}
+                {errors.submit && (
+                  <p className="text-xs text-red-400 flex items-center gap-1">
+                    <AlertCircle className="w-3.5 h-3.5" />
+                    {errors.submit}
+                  </p>
+                )}
 
-                  <motion.button type="submit" disabled={isSubmitting} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors shadow-lg">
-                    {isSubmitting ? <><Loader className="w-5 h-5 animate-spin" /><span>Envoi en cours...</span></> : <><Send className="w-5 h-5" /><span>Envoyer le message</span></>}
-                  </motion.button>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-accent hover:bg-accent-soft disabled:opacity-50 text-white text-sm font-medium transition-colors"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader className="w-4 h-4 animate-spin" />
+                      {t('contact.sending')}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      {t('contact.send')}
+                    </>
+                  )}
+                </button>
+              </motion.form>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

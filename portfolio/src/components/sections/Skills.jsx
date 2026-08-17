@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
-  FaReact, FaPython, FaHtml5, FaCss3Alt, FaGithub, FaNodeJs, FaDatabase
+  FaReact, FaPython, FaHtml5, FaCss3Alt, FaGithub, FaNodeJs,
 } from 'react-icons/fa';
-import {
-  SiTailwindcss, SiDjango, SiJavascript, SiMysql, SiPostgresql,
-  SiStreamlit, SiFigma, SiAdobephotoshop
-} from 'react-icons/si';
-import { Code, Palette, Server, Brain, Filter } from 'lucide-react';
+import { SiTailwindcss, SiDjango, SiJavascript, SiMysql, SiPostgresql, SiStreamlit, SiFigma } from 'react-icons/si';
+import { Code, ArrowUpRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { SKILLS } from '../../constants/skillData';
-import { useIntersectionObserver } from '../../hooks';
+import { SectionHeading } from './Hero';
 
-/**
- * ============================================
- * SKILLS COMPONENT
- * ============================================
- * Section compétences avec:
- * - Filtres par catégorie
- * - Progress bars animées
- * - Icons pour chaque skill
- * - Grid responsive
- * - Animations au scroll
- * ============================================
- */
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: 'easeOut' },
+  }),
+};
 
-// ============================================
-// SKILL ICONS MAPPING
-// ============================================
 const SKILL_ICONS = {
   React: FaReact,
   Django: SiDjango,
@@ -36,204 +28,75 @@ const SKILL_ICONS = {
   'Node.js': FaNodeJs,
   CSS3: FaCss3Alt,
   HTML5: FaHtml5,
-  GitHub: FaGithub,
+  'Git/GitHub': FaGithub,
   MySQL: SiMysql,
   PostgreSQL: SiPostgresql,
   Streamlit: SiStreamlit,
-  
+  Figma: SiFigma,
 };
 
-// ============================================
-// CATEGORIES CONFIG
-// ============================================
-const CATEGORIES = [
-  { id: 'all', label: 'Toutes', icon: Code, color: 'blue' },
-  { id: 'frontend', label: 'Frontend', icon: Palette, color: 'purple' },
-  { id: 'backend', label: 'Backend', icon: Server, color: 'green' },
-  { id: 'database', label: 'Database', icon: FaDatabase, color: 'orange' },
-  { id: 'tools', label: 'Tools', icon: Filter, color: 'pink' },
-  { id: 'ai', label: 'AI/ML', icon: Brain, color: 'indigo' },
-];
-
-// ============================================
-// SUB-COMPONENTS
-// ============================================
-
-/**
- * Category Filter Button
- */
-const CategoryButton = ({ category, isActive, onClick }) => {
-  const Icon = category.icon;
-  
-  return (
-    <motion.button
-      onClick={onClick}
-      whileHover={{ scale: 1.05, y: -2 }}
-      whileTap={{ scale: 0.95 }}
-      className={`
-        relative px-4 py-2 rounded-full flex items-center space-x-2 transition-all
-        ${isActive
-          ? `bg-${category.color}-600 text-white shadow-lg`
-          : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-        }
-      `}
-    >
-      <Icon className="w-4 h-4" />
-      <span className="text-sm font-medium">{category.label}</span>
-      
-      {isActive && (
-        <motion.div
-          layoutId="activeCategory"
-          className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full -z-10"
-          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        />
-      )}
-    </motion.button>
-  );
+const CATEGORY_KEY = {
+  frontend: 'categoryFrontend',
+  backend: 'categoryBackend',
+  database: 'categoryDatabase',
+  tools: 'categoryTools',
+  ai: 'categoryAi',
 };
-/**
- * Skill Card
- */
-const SkillCard = ({ skill, index }) => {
+
+export const SkillRow = ({ skill, delay, t }) => {
   const Icon = SKILL_ICONS[skill.name] || Code;
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
-
-  // Color based on category
-  const categoryColors = {
-    frontend: 'purple',
-    backend: 'green',
-    database: 'orange',
-    tools: 'pink',
-    ai: 'indigo',
-  };
-  
-  const color = categoryColors[skill.category] || 'blue';
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ scale: 1.03, y: -5 }}
-      className="rounded-xl shadow-zinc-100 p-4 hover:shadow-2xs transition-shadow"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      variants={fadeUp}
+      custom={delay}
+      className="flex items-center gap-3 py-3"
     >
-      {/* Icon + Name */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <div className={`p-1 bg-${color}-800 dark:bg-${color}-900 rounded-lg`}>
-            <Icon className={`w-5 h-5 text-${color}-600 dark:text-${color}-400`} />
-          </div>
-          <h6 className="text-lg font-semibold text-gray-100 dark:text-white">
-            {skill.name}
-          </h6>
-        </div>
+      <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+        <Icon className="w-4 h-4 text-white/70" />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-white">{skill.name}</p>
+        <p className="text-xs text-white/40">{t(`skills.${CATEGORY_KEY[skill.category]}`)}</p>
       </div>
     </motion.div>
   );
 };
 
-// ============================================
-// MAIN COMPONENT
-// ============================================
-
-export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-
-  // Filter skills based on category
+/**
+ * @param {number} [limit]
+ * @param {boolean} [showViewAll]
+ */
+export default function Skills({ limit, showViewAll = false, headingTop, headingBottom }) {
+  const { t } = useTranslation();
+  const top = headingTop ?? t('skills.headingTop');
+  const bottom = headingBottom ?? t('skills.headingBottom');
   const allSkills = Object.values(SKILLS).flat();
-  const filteredSkills = activeCategory === 'all'
-    ? allSkills
-    : allSkills.filter(skill => skill.category === activeCategory);
-
-  // Calculate average level
-  const avgLevel = Math.round(
-    filteredSkills.reduce((sum, skill) => sum + skill.level, 0) / filteredSkills.length
-  );
+  const list = limit ? allSkills.slice(0, limit) : allSkills;
 
   return (
-    <section id="skills" className="my-20 px-4" ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto"
-      >
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.h2
-            className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Compétences Techniques
-          </motion.h2>
-          <motion.p
-            className="text-gray-200 dark:text-gray-400 text-lg max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Une sélection de technologies que je maîtrise, constamment en évolution
-          </motion.p>
-        </div>
-
-        {/* Category Filters */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          {CATEGORIES.map((category) => (
-            <CategoryButton
-              key={category.id}
-              category={category}
-              isActive={activeCategory === category.id}
-              onClick={() => setActiveCategory(category.id)}
-            />
-          ))}
+    <section id="skills" className="py-16 sm:py-24">
+      <div className="flex items-end justify-between gap-4 flex-wrap">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <SectionHeading top={top} bottom={bottom} />
         </motion.div>
-
-        {/* Skills Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        {showViewAll && (
+          <Link
+            to="/expertise"
+            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
           >
-            {filteredSkills.map((skill, index) => (
-              <SkillCard key={`${skill.name}-${index}`} skill={skill} index={index} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+            {t('skills.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
+      </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-200 dark:text-gray-400 mb-4">
-            En constante évolution et apprentissage !
-          </p>
-          <a
-            href="https://github.com/Ismail0u"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:underline"
-          >
-            <FaGithub className="w-5 h-5" />
-            <span>Voir mes projets sur GitHub</span>
-          </a>
-        </motion.div>
-      </motion.div>
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
+        {list.map((skill, i) => (
+          <SkillRow key={skill.name} skill={skill} delay={0.03 * i} t={t} />
+        ))}
+      </div>
     </section>
   );
 }
