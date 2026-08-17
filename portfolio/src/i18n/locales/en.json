@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "about": "About",
+    "work": "Work",
+    "expertise": "Expertise",
+    "experience": "Experience",
+    "certifications": "Certifications",
+    "writing": "Writing",
+    "contact": "Contact",
+    "resume": "Resume",
+    "getInTouch": "Get in touch",
+    "menu": "Menu"
+  },
+  "hero": {
+    "titleTop": "Software",
+    "titleBottom": "Engineer",
+    "statExperience": "Years of experience",
+    "statProjects": "Projects delivered",
+    "statTech": "Core technologies",
+    "expertiseBlock1": "Software Engineering — React, Django, PostgreSQL, clean architecture",
+    "expertiseBlock2": "AI & Cloud — Python, DeepFace, NLTK, Oracle Cloud Infrastructure",
+    "ctaContact": "Get in touch",
+    "ctaDownloadCV": "Download CV",
+    "cvModalTitle": "Download CV",
+    "cvModalSubtitle": "Choose a language",
+    "cvModalFrench": "French",
+    "cvModalEnglish": "English"
+  },
+  "about": {
+    "headingTop": "About",
+    "headingBottom": "Me"
+  },
+  "skills": {
+    "headingTop": "Core",
+    "headingBottom": "Expertise",
+    "headingTopFull": "Core",
+    "headingBottomFull": "Expertise",
+    "viewAll": "Full expertise",
+    "categoryFrontend": "Frontend",
+    "categoryBackend": "Backend",
+    "categoryDatabase": "Database",
+    "categoryTools": "Tool",
+    "categoryAi": "Data / AI"
+  },
+  "services": {
+    "headingTop": "How I Can",
+    "headingBottom": "Help",
+    "onQuote": "On quote",
+    "monthlyPlan": "Monthly plan",
+    "chatWhatsApp": "Chat on WhatsApp"
+  },
+  "timeline": {
+    "headingTop": "My Journey &",
+    "headingBottom": "Experience",
+    "headingTopFull": "Full",
+    "headingBottomFull": "Experience",
+    "viewAll": "Full experience"
+  },
+  "projects": {
+    "headingTop": "Recent",
+    "headingBottom": "Projects",
+    "headingTopFull": "All",
+    "headingBottomFull": "Projects",
+    "viewAll": "View all projects",
+    "caseStudyBadge": "Case study",
+    "sourceCode": "Source code",
+    "liveDemo": "Live demo",
+    "allProjects": "All projects",
+    "problem": "Problem",
+    "solution": "Solution",
+    "role": "Role",
+    "architecture": "Architecture",
+    "challenges": "Technical Challenges",
+    "learnings": "What I Learned",
+    "outcome": "Outcome",
+    "noCaseStudy": "Detailed case study not yet written for this project — check the source code above."
+  },
+  "certifications": {
+    "headingTop": "Certifications &",
+    "headingBottom": "Credentials",
+    "headingTopFull": "All",
+    "headingBottomFull": "Certifications",
+    "viewAll": "View all certifications",
+    "viewCertificate": "View certificate",
+    "verify": "Verify"
+  },
+  "writing": {
+    "headingTop": "Technical",
+    "headingBottom": "Notes",
+    "headingTopFull": "All",
+    "headingBottomFull": "Writing",
+    "viewAll": "All writing"
+  },
+  "resume": {
+    "headingTop": "Resume",
+    "headingBottom": "Overview",
+    "experienceEducation": "Experience & Education",
+    "skills": "Skills"
+  },
+  "contact": {
+    "headingTop": "Let's Work",
+    "headingBottom": "Together",
+    "name": "Full name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "phone": "Phone",
+    "phonePlaceholder": "+227 XX XX XX XX",
+    "subject": "Subject",
+    "subjectPlaceholder": "What would you like to discuss?",
+    "message": "Message",
+    "messagePlaceholder": "Describe your project or request...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent!",
+    "successBody": "I'll get back to you as soon as possible.",
+    "labelEmail": "Email",
+    "labelPhone": "Phone",
+    "labelLocation": "Location",
+    "errNameRequired": "Name is required",
+    "errNameLength": "Name must be at least 2 characters",
+    "errEmailRequired": "Email is required",
+    "errEmailInvalid": "Invalid email",
+    "errPhoneInvalid": "Invalid phone number",
+    "errMessageRequired": "Message is required",
+    "errMessageLength": "Message must be at least 10 characters",
+    "errThrottle": "Please wait before resending the form.",
+    "errSubmitFailed": "Submission failed — please try again later.",
+    "errNetwork": "A network error occurred. Please try again later."
+  },
+  "cta": {
+    "title": "Let's build something reliable together.",
+    "body": "Open to internships, freelance projects, and collaborations in software engineering, AI, or cloud infrastructure.",
+    "button": "Get in touch"
+  },
+  "footer": {
+    "role": "Software Engineer"
+  }
+}
