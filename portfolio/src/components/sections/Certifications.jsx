@@ -1,76 +1,105 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Award, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { CERTIFICATIONS } from '../../constants/certificationsData';
+import { SectionHeading } from './Hero';
+import { pickLang } from '../../utils';
 
-// PDFs des certificats
-import IEEE from '../../assets/certif/certificatIEEE1.pdf';
-import CS1 from '../../assets/certif/Saylor_CS1.pdf';
-import English from '../../assets/certif/Saylor_Englich.pdf';
-import PythonCert from '../../assets/certif/saylor_Python.pdf';
-import DataCommuni from '../../assets/certif/dataCommuni.pdf';
-import OraclecertifIA from '../../assets/certif/OracleCertificate.pdf';
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: 'easeOut' },
+  }),
+};
 
-const certifications = [
-  { title: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate', org: 'Oracle University', date: '2025', pdf: OraclecertifIA },
-  { title: 'CS105: Introduction to Python', org: 'Saylor', date: '2025', pdf: PythonCert },
-  { title: 'CS101: Intro to Computer Science I', org: 'Saylor', date: '2025', pdf: CS1 },
-  { title: 'IEEE Membership Certificate', org: 'IEEE', date: '2024', pdf: IEEE },
-  { title: 'ESL003: Upper-Intermediate English', org: 'Saylor', date: '2025', pdf: English },
-  { title: 'PRDV200: Communicating with Data', org: 'Saylor', date: '2025', pdf: DataCommuni },
-];
+export const CertCard = ({ cert, delay, lang, t }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: '-40px' }}
+    variants={fadeUp}
+    custom={delay}
+    className="rounded-xl border border-white/10 p-5 hover:border-white/20 transition-colors"
+  >
+    <div className="flex items-start justify-between gap-3">
+      <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
+        <Award className="w-4 h-4 text-accent-soft" />
+      </div>
+      <span className="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-white/5 text-white/40 shrink-0">
+        {pickLang(cert, 'category', lang)}
+      </span>
+    </div>
 
-export default function Certifications() {
-  const [showAll, setShowAll] = useState(false);
-  const visibleCerts = showAll ? certifications : certifications.slice(0, 3);
+    <h3 className="mt-3 text-sm font-semibold text-white leading-snug">{cert.title}</h3>
+    <p className="mt-1 text-xs text-white/40">{cert.org} — {cert.date}</p>
+
+    <div className="mt-4 flex items-center gap-4">
+      {cert.pdf && (
+        <a
+          href={cert.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-medium text-accent-soft hover:text-white transition-colors inline-flex items-center gap-1"
+        >
+          {t('certifications.viewCertificate')} <ExternalLink className="w-3 h-3" />
+        </a>
+      )}
+      {cert.verifyUrl && (
+        <a
+          href={cert.verifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-medium text-white/40 hover:text-white transition-colors inline-flex items-center gap-1"
+        >
+          {t('certifications.verify')} <ExternalLink className="w-3 h-3" />
+        </a>
+      )}
+    </div>
+  </motion.div>
+);
+
+/**
+ * @param {number} [limit] - si fourni, n'affiche que les N premières certifications
+ * @param {boolean} [showViewAll] - affiche un lien "View all certifications"
+ * @param {'list'|'grid'} [layout]
+ */
+export default function Certifications({ limit, showViewAll = false, layout = 'grid', headingTop, headingBottom }) {
+  const { t, i18n } = useTranslation();
+  const top = headingTop ?? t('certifications.headingTop');
+  const bottom = headingBottom ?? t('certifications.headingBottom');
+  const list = limit ? CERTIFICATIONS.slice(0, limit) : CERTIFICATIONS;
 
   return (
-    <section id="certifications" className="my-20 px-4">
-      <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-8 text-center">
-        Certifications
-      </h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {visibleCerts.map((cert, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow flex flex-col items-center p-4"
+    <section id="certifications" className="py-16 sm:py-24">
+      <div className="flex items-end justify-between gap-4 flex-wrap">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <SectionHeading top={top} bottom={bottom} />
+        </motion.div>
+        {showViewAll && (
+          <Link
+            to="/certifications"
+            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
           >
-            {/* Placeholder icon pour certificat */}
-            <div className="w-full h-32 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-5">
-              <FileText className="w-10 h-10 text-gray-400 dark:text-gray-500" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">
-              {cert.title}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              {cert.org} • {cert.date}
-            </p>
-            <a
-              href={cert.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-500 hover:underline"
-            >
-              <FileText className="w-4 h-4 mr-1" /> Voir le certificat
-            </a>
-          </motion.div>
-        ))}
+            {t('certifications.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
       </div>
 
-      {certifications.length > 3 && (
-        <div className="text-center mt-8">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="text-blue-600 dark:text-blue-400 underline hover:no-underline"
-          >
-            {showAll ? 'Voir moins' : 'Voir plus'}
-          </button>
-        </div>
-      )}
+      <div
+        className={
+          layout === 'grid'
+            ? 'mt-10 grid sm:grid-cols-2 gap-4 max-w-3xl'
+            : 'mt-10 max-w-2xl divide-y divide-white/10'
+        }
+      >
+        {list.map((cert, i) => (
+          <CertCard key={cert.id} cert={cert} delay={0.04 * i} lang={i18n.language} t={t} />
+        ))}
+      </div>
     </section>
   );
 }

@@ -98,17 +98,14 @@ export default defineConfig({
         // Manual chunk splitting for better caching
         manualChunks: {
           // Vendor chunks
-          'react-vendor': ['react', 'react-dom'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'framer-motion': ['framer-motion'],
-          'three': ['three'],
-          
+
           // UI libraries
           'ui-vendor': [
             'lucide-react',
-            'swiper',
-            'react-parallax-tilt',
           ],
-          
+
           // Utils
           'utils': [
             './src/utils/index.js',
@@ -153,10 +150,9 @@ export default defineConfig({
     include: [
       'react',
       'react-dom',
+      'react-router-dom',
       'framer-motion',
-      'three',
       'lucide-react',
-      'swiper',
       'react-helmet-async',
     ],
     exclude: [],

@@ -1,102 +1,49 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
+import ScrollToTop from './components/common/ScrollToTop';
 import SEO from './components/common/seo';
-import TechBackground from './components/common/techBackground';
 
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Services from './components/sections/Services';
-import Timeline from './components/sections/Timeline';
-import Projects from './components/sections/Projects';
-import Certifications from './components/sections/Certifications';
-import CaseStudies from './components/sections/CaseStudies';
-import Contact from './components/sections/Contact';
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import WorkPage from './pages/WorkPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import ExpertisePage from './pages/ExpertisePage';
+import ExperiencePage from './pages/ExperiencePage';
+import CertificationsPage from './pages/CertificationsPage';
+import WritingPage from './pages/WritingPage';
+import ResumePage from './pages/ResumePage';
+import ContactPage from './pages/ContactPage';
 
 import './index.css';
-
 
 export default function App() {
   return (
     <HelmetProvider>
-      <div className="min-h-screen flex flex-col font-primary transition duration-100 scroll-smooth">
+      <div className="min-h-screen flex flex-col font-primary transition duration-100 scroll-smooth bg-ink text-white">
         <SEO />
-        <TechBackground />
+        <ScrollToTop />
         <Navbar />
-           <main className="flex-grow container max-w-screen-lg mx-auto px-4 py-2">
-          {/* Hero Section */}
-          <Hero />
-          
-          {/* About Section */}
-          <About />
-          
-          {/* Skills Section */}
-          <Skills />
-          
-          {/* Services Section */}
-          <Services />
-          
-          {/* Timeline Section */}
-          <Timeline />
-          
-          {/* Projects Section */}
-          <Projects />
-          
-          {/* Certifications Section */}
-          <Certifications />
-          
-          {/* Case Studies Section */}
-          <CaseStudies />
-          
-          {/* Contact Section */}
-          <Contact />
+        <main className="flex-grow max-w-5xl w-full mx-auto px-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/work" element={<WorkPage />} />
+            <Route path="/work/:slug" element={<ProjectDetailPage />} />
+            <Route path="/expertise" element={<ExpertisePage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/certifications" element={<CertificationsPage />} />
+            <Route path="/writing" element={<WritingPage />} />
+            <Route path="/resume" element={<ResumePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
         </main>
-        
-        {/* ============================================
-            FOOTER
-            Social links, copyright, newsletter
-            ============================================ */}
+
         <Footer />
       </div>
     </HelmetProvider>
   );
 }
-
-/**
- * ============================================
- * NOTES DE DÉVELOPPEMENT
- * ============================================
- * 
- * 1. PERFORMANCE:
- *    - Particles3D et CustomCursor sont légers
- *    - Lazy loading des images dans les sections
- *    - Animations déclenchées au scroll (IntersectionObserver)
- * 
- * 2. ACCESSIBILITÉ:
- *    - Semantic HTML (header, main, footer, nav, section)
- *    - ARIA labels où nécessaire
- *    - Focus management dans modals
- *    - Keyboard navigation support
- * 
- * 3. SEO:
- *    - Meta tags via SEO component
- *    - Structured data (JSON-LD)
- *    - Canonical URLs
- *    - Alt text sur toutes les images
- * 
- * 4. RESPONSIVE:
- *    - Mobile-first approach
- *    - Breakpoints Tailwind (sm, md, lg, xl)
- *    - Touch-friendly UI
- * 
- * 5. MAINTENANCE:
- *    - Composants isolés et réutilisables
- *    - Constants centralisés
- *    - Hooks custom pour logique réutilisable
- *    - Documentation inline
- * ============================================
- */

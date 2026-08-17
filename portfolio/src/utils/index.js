@@ -445,6 +445,18 @@ export const randomColor = () => {
  * @param {string} eventName - Nom de l'événement
  * @param {Object} params - Paramètres
  */
+/**
+ * Sélectionne un champ bilingue dans un objet de données (ex: `title` + `Fr`/`En`).
+ * Utilisé partout où les constants exposent des champs `xxxFr` / `xxxEn`.
+ * @param {object} obj
+ * @param {string} base - nom de base du champ, ex: 'title'
+ * @param {string} lang - code langue i18next, ex: 'fr' ou 'en'
+ */
+export const pickLang = (obj, base, lang) => {
+  const suffix = lang?.startsWith('en') ? 'En' : 'Fr';
+  return obj?.[`${base}${suffix}`] ?? obj?.[base] ?? '';
+};
+
 export const trackEvent = (eventName, params = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, params);

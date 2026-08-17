@@ -2,11 +2,11 @@
 // NAVIGATION
 // ============================================
 export const NAV_LINKS = [
-  { id: 'hero', label: 'Accueil', href: '#hero' },
-  { id: 'about', label: 'À propos', href: '#about' },
-  { id: 'skills', label: 'Compétences', href: '#skills' },
-  { id: 'services', label: 'Services', href: '#services' },
-  { id: 'timeline', label: 'Parcours', href: '#timeline' },
-  { id: 'projects', label: 'Projets', href: '#projects' },
-  { id: 'certifications', label: 'Certifications', href: '#certifications' },
+  { id: 'about', label: 'About', href: '/about' },
+  { id: 'work', label: 'Work', href: '/work' },
+  { id: 'expertise', label: 'Expertise', href: '/expertise' },
+  { id: 'experience', label: 'Experience', href: '/experience' },
+  { id: 'certifications', label: 'Certifications', href: '/certifications' },
+  { id: 'writing', label: 'Writing', href: '/writing' },
+  { id: 'contact', label: 'Contact', href: '/contact' },
 ];

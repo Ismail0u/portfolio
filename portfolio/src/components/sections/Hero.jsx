@@ -1,335 +1,178 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Download, Mail, Github, Linkedin, Code, Zap, Rocket, Star } from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
-import { PERSONAL_INFO , SOCIAL_LINKS } from '../../constants/personalInfo';
-import { trackEvent } from '../../utils';
-import GlitchText from '../common/glitchText';
+import { Download, Github, Linkedin, Mail, ArrowUpRight, X } from 'lucide-react';
+import { PERSONAL_INFO, SOCIAL_LINKS } from '../../constants/personalInfo';
+import { trackEvent, pickLang } from '../../utils';
 
 /**
  * ============================================
- * HERO V3 - ULTRA TECH FINAL
+ * HERO — direction "sobre, structuré, senior"
+ * ============================================
+ * Principes appliqués :
+ * - Fond noir statique (pas de gradient animé, pas de particules)
+ * - Une seule zone claire à fort contraste (la carte photo)
+ * - Titres en deux niveaux : mot plein (blanc) / mot muted (gris)
+ * - Animation limitée à un fade-in + léger slide au montage
+ * - Couleur utilisée en accent ciblé, jamais en glow ambiant
  * ============================================
  */
 
-// ============================================
-// TYPING EFFECT
-// ============================================
-const TypingEffect = ({ text, speed = 80, delay = 0 }) => {
-  const [displayText, setDisplayText] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    let timeout;
-    let index = 0;
-
-    const startTyping = () => {
-      if (index <= text.length) {
-        setDisplayText(text.slice(0, index));
-        index++;
-        timeout = setTimeout(startTyping, speed);
-      } else {
-        setIsComplete(true);
-      }
-    };
-
-    const delayTimeout = setTimeout(startTyping, delay);
-
-    return () => {
-      clearTimeout(timeout);
-      clearTimeout(delayTimeout);
-    };
-  }, [text, speed, delay]);
-
-  return (
-    <span className="inline-block font-tech">
-      {displayText}
-      {!isComplete && (
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity }}
-          className="inline-block w-1 h-6 sm:h-8 bg-cyan-400 ml-1 align-middle"
-        />
-      )}
-    </span>
-  );
+// Variants d'animation partagés — un seul pattern, réutilisé partout
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: 'easeOut' },
+  }),
 };
 
-// ============================================
-// FLOATING TECH ICONS
-// ============================================
-const FloatingIcons = () => {
-  const icons = [
-    { Icon: Code, x: '-15%', y: '-10%', delay: 0 },
-    { Icon: Zap, x: '110%', y: '-15%', delay: 0.2 },
-    { Icon: Rocket, x: '-20%', y: '100%', delay: 0.4 },
-    { Icon: Star, x: '115%', y: '105%', delay: 0.6 },
-  ];
-
+/**
+ * Titre à deux niveaux : ligne pleine + ligne muted, même taille.
+ * Pattern réutilisable pour toutes les sections (Projects, Timeline, Skills...).
+ */
+export function SectionHeading({ top, bottom, align = 'left' }) {
   return (
-    <>
-      {icons.map(({ Icon, x, y, delay }, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.4, scale: 1 }}
-          transition={{ delay: delay + 1.5, duration: 0.6 }}
-          className="absolute"
-          style={{ left: x, top: y }}
-        >
-          <motion.div
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 10, -10, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: delay,
-              ease: 'easeInOut',
-            }}
-            className="text-cyan-400"
-          >
-            <Icon className="w-8 h-8 sm:w-10 sm:h-10" style={{ filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))' }} />
-          </motion.div>
-        </motion.div>
-      ))}
-    </>
-  );
-};
-
-// ============================================
-// ANIMATED COUNTER
-// ============================================
-const AnimatedCounter = ({ end, label, delay = 0, suffix = '+' }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const duration = 2000;
-      const steps = 60;
-      const increment = end / steps;
-      let current = 0;
-
-      const interval = setInterval(() => {
-        current += increment;
-        if (current >= end) {
-          setCount(end);
-          clearInterval(interval);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
-
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [end, delay]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: delay / 1000, duration: 0.6 }}
-      className="text-center group"
+    <h2
+      className={`font-display font-bold uppercase leading-[0.95] tracking-tight text-4xl sm:text-5xl lg:text-6xl ${
+        align === 'center' ? 'text-center' : 'text-left'
+      }`}
     >
-      <div className="text-4xl sm:text-5xl font-bold text-neon-blue mb-2 group-hover:scale-110 transition-transform">
-        {count}{suffix}
+      <span className="block text-white">{top}</span>
+      <span className="block text-white/30">{bottom}</span>
+    </h2>
+  );
+}
+
+// Carte photo — la seule zone "claire" de la page
+const ProfileCard = () => (
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    custom={0}
+    className="relative w-full max-w-[280px] mx-auto lg:mx-0"
+  >
+    <div className="bg-paper rounded-2xl p-5 shadow-xl">
+      <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-accent to-accent2">
+        <img
+          src="/assets/image/isma12.jpeg"
+          alt={PERSONAL_INFO.name}
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
       </div>
-      <div className="text-sm text-gray-400 font-tech uppercase tracking-wider">{label}</div>
-    </motion.div>
-  );
-};
 
-// ============================================
-// MAGNETIC BUTTON
-// ============================================
-const MagneticButton = ({ children, href, onClick, primary, external, badge, className }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+      <p className="mt-4 text-center font-display font-bold text-ink text-lg">
+        {PERSONAL_INFO.name}
+      </p>
+      <p className="mt-1 text-center text-xs text-ink/60 leading-snug px-2">
+        {PERSONAL_INFO.title} — {PERSONAL_INFO.location}
+      </p>
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
-    setPosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
-    setIsHovered(false);
-  };
-
-  const Tag = href ? 'a' : 'button';
-
-  return (
-    <Tag
-      href={href}
-      onClick={onClick}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noopener noreferrer' : undefined}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      className={`
-        relative inline-flex items-center px-6 py-3 rounded-lg font-tech font-semibold
-        transition-all duration-300 overflow-hidden group
-        ${primary
-          ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-neon-blue'
-          : 'border-2 border-cyan-400 text-cyan-400 hover:text-white'
-        }
-        ${className || ''}
-      `}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-      }}
-    >
-      {/* Hover effect background */}
-      {!primary && (
-        <span className="absolute inset-0 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 -z-10" />
-      )}
-      
-      {/* Glow effect */}
-      <span className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl ${
-        primary ? 'bg-cyan-400' : 'bg-cyan-400/50'
-      }`} style={{ zIndex: -1 }} />
-      
-      {children}
-      
-      {badge && (
-        <motion.span
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-lg"
+      <div className="mt-4 flex items-center justify-center gap-3">
+        <a
+          href={SOCIAL_LINKS.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-ink/5 text-ink hover:bg-accent hover:text-white transition-colors"
         >
-          {badge}
-        </motion.span>
-      )}
-    </Tag>
-  );
-};
-
-// ============================================
-// 3D PROFILE IMAGE
-// ============================================
-const ProfileImage3D = ({ src, alt }) => (
-  <div className="relative mb-2">
-    <FloatingIcons />
-    
-    <Tilt
-      tiltMaxAngleX={13}
-      tiltMaxAngleY={13}
-      perspective={1000}
-      scale={1.03}
-      transitionSpeed={2000}
-    >
-      <motion.div
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-        className="relative mx-auto w-48 h-48 sm:w-56 sm:h-56 rounded-full"
-      >
-        {/* Animated border */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-spin-slow" />
-        
-        {/* Image container */}
-        <div className="absolute inset-1 rounded-full overflow-hidden bg-gray-900 shadow-2xl">
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
-          
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent" />
-        </div>
-        
-        {/* Pulse ring */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="absolute inset-0 rounded-full border-2 border-cyan-400"
-        />
-      </motion.div>
-    </Tilt>
-  </div>
+          <Github className="w-4 h-4" />
+        </a>
+        <a
+          href={SOCIAL_LINKS.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-ink/5 text-ink hover:bg-accent hover:text-white transition-colors"
+        >
+          <Linkedin className="w-4 h-4" />
+        </a>
+        <a
+          href={SOCIAL_LINKS.email}
+          aria-label="Email"
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-ink/5 text-ink hover:bg-accent hover:text-white transition-colors"
+        >
+          <Mail className="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </motion.div>
 );
 
-// ============================================
-// CV MODAL
-// ============================================
-const CVModal = ({ isOpen, onClose, onDownload }) => {
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleEsc = (e) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [isOpen, onClose]);
+// Ligne de statistiques — remplace les jauges de % arbitraires par des chiffres factuels
+const Stat = ({ value, label, delay }) => (
+  <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={delay}>
+    <div className="font-display font-bold text-3xl sm:text-4xl text-white">{value}</div>
+    <div className="text-[11px] uppercase tracking-wider text-white/40 mt-1">{label}</div>
+  </motion.div>
+);
 
+// Bloc d'expertise — équivalent des cartes orange/lime, adapté à la stack réelle
+const ExpertiseBlock = ({ title, tone, delay }) => (
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    custom={delay}
+    className={`relative rounded-xl p-5 min-h-[110px] flex flex-col justify-between ${
+      tone === 'primary' ? 'bg-accent' : 'bg-accent2'
+    }`}
+  >
+    <p className="font-display font-semibold text-sm leading-snug text-ink pr-6">{title}</p>
+    <ArrowUpRight className="absolute top-4 right-4 w-4 h-4 text-ink/70" />
+  </motion.div>
+);
+
+// Modale de sélection de langue pour le CV — inchangée dans sa fonction, allégée dans le style
+const CVModal = ({ isOpen, onClose, onDownload, t }) => {
   if (!isOpen) return null;
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="glass-tech rounded-2xl shadow-2xl w-full max-w-md p-8 border border-cyan-400/30"
-      >
-        <h3 className="text-2xl font-tech font-bold text-neon-blue mb-4">
-          📄 Télécharger CV
-        </h3>
-        <p className="text-gray-400 mb-6">Choisissez votre langue</p>
-
-        <div className="flex gap-4">
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onDownload('fr')}
-            className="flex-1 px-6 py-4 rounded-xl border-2 border-cyan-400/50 hover:border-cyan-400 bg-gray-900/50 hover:bg-gray-800 text-white transition-all"
-          >
-            <div className="text-3xl mb-2">🇫🇷</div>
-            <div className="font-semibold">Français</div>
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onDownload('en')}
-            className="flex-1 px-6 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-neon-blue transition-all"
-          >
-            <div className="text-3xl mb-2">🇬🇧</div>
-            <div className="font-semibold">English</div>
-          </motion.button>
-        </div>
-
+      <div className="bg-ink-soft border border-white/10 rounded-2xl w-full max-w-sm p-6 relative">
         <button
           onClick={onClose}
-          className="mt-6 w-full text-sm text-gray-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 text-white/40 hover:text-white"
+          aria-label="Fermer"
         >
-          Annuler
+          <X className="w-4 h-4" />
         </button>
-      </motion.div>
-    </motion.div>
+        <p className="font-display font-bold text-white text-lg mb-1">{t('hero.cvModalTitle')}</p>
+        <p className="text-white/50 text-sm mb-5">{t('hero.cvModalSubtitle')}</p>
+        <div className="flex gap-3">
+          <button
+            onClick={() => onDownload('fr')}
+            className="flex-1 py-3 rounded-lg border border-white/15 text-white text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+          >
+            {t('hero.cvModalFrench')}
+          </button>
+          <button
+            onClick={() => onDownload('en')}
+            className="flex-1 py-3 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-soft transition-colors"
+          >
+            {t('hero.cvModalEnglish')}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-// ============================================
-// MAIN HERO
-// ============================================
 export default function Hero() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCVDownload = useCallback((language) => {
-    const cvUrls = { fr: '/src/assets/certif/cv.pdf', en: '/src/assets/certif/cv_en.pdf' };
-    const fileName = language === 'fr' ? 'MOUSSA_Ismael_CV_FR_2025.pdf' : 'MOUSSA_Ismael_Resume_EN_2025.pdf';
+    const cvUrls = { fr: '/cv-fr.pdf', en: '/cv-en.pdf' };
+    const fileName =
+      language === 'fr' ? 'MOUSSA_Ismael_CV_FR.pdf' : 'MOUSSA_Ismael_Resume_EN.pdf';
 
     const link = document.createElement('a');
     link.href = cvUrls[language];
@@ -340,120 +183,101 @@ export default function Hero() {
     setIsModalOpen(false);
   }, []);
 
-  const socialButtons = [
-    {
-      id: 'contact',
-      label: 'Contact',
-      href: '#contact',
-      primary: true,
-      icon: <Mail className="w-4 h-4 mr-1" />,
-    },
-    {
-      id: 'cv',
-      label: 'CV',
-      onClick: () => setIsModalOpen(true),
-      icon: <Download className="w-4 h-4 mr-1" />,
-      badge: 'NEW',
-    },
-    {
-      id: 'github',
-      label: 'GitHub',
-      href: SOCIAL_LINKS.github,
-      external: true,
-      icon: <Github className="w-4 h-4 mr-1" />,
-    },
-    {
-      id: 'linkedin',
-      label: 'LinkedIn',
-      href: SOCIAL_LINKS.linkedin,
-      external: true,
-      icon: <Linkedin className="w-4 h-4 mr-1" />,
-    },
-  ];
-
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-5"
-    >
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-        
-        {/* Profile */}
-        <ProfileImage3D
-          src="assets/image/isma12.jpeg"
-          alt={PERSONAL_INFO.name}
-        />
+    <section id="hero" className="relative py-16 sm:py-24">
+      <div className="grid lg:grid-cols-[300px_1fr] gap-10 lg:gap-16 items-start">
+        {/* Colonne gauche — carte photo, sticky en desktop */}
+        <div className="lg:sticky lg:top-24">
+          <ProfileCard />
+        </div>
 
-        {/* Name */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mb-2"
-        >
-          <GlitchText
-            text={PERSONAL_INFO.name}
-            className="text-5xl sm:text-7xl font-black text-neon-blue mb-1"
-          />
-        </motion.div>
+        {/* Colonne droite — contenu */}
+        <div>
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0.1} className="brand-glow">
+            <SectionHeading top={t('hero.titleTop')} bottom={t('hero.titleBottom')} />
+          </motion.div>
 
-        {/* Title with Typing */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="text-xl sm:text-3xl text-gray-300 mb-1"
-        >
-          <TypingEffect
-            text={`${PERSONAL_INFO.title} | ${PERSONAL_INFO.tagline}`}
-            speed={70}
-            delay={1500}
-          />
-        </motion.div>
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            custom={0.2}
+            className="mt-5 text-white/60 text-base sm:text-lg max-w-xl leading-relaxed"
+          >
+            {pickLang(PERSONAL_INFO, 'pitch', lang)}
+          </motion.p>
 
-        {/* Bio */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2 }}
-          className="text-lg text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed"
-        >
-          {PERSONAL_INFO.bio}
-        </motion.p>
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.6 }}
-          className="flex justify-center gap-4 flex-wrap"
-        >
-          {socialButtons.map((btn) => (
-            <MagneticButton key={btn.id} {...btn}>
-              {btn.icon}
-              {btn.label}
-            </MagneticButton>
-          ))}
-        </motion.div>
+          {/* Domaines — élargit le positionnement au-delà de "full-stack dev" */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            custom={0.25}
+            className="mt-4 flex flex-wrap gap-2"
+          >
+            {PERSONAL_INFO.domains.map((domain) => (
+              <span
+                key={domain}
+                className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-white/60"
+              >
+                {domain}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* Stats */}
+          <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
+            <Stat value="3+" label={t('hero.statExperience')} delay={0.3} />
+            <Stat value="12+" label={t('hero.statProjects')} delay={0.35} />
+            <Stat value="6+" label={t('hero.statTech')} delay={0.4} />
+          </div>
+
+          {/* Blocs d'expertise — à ajuster avec les vraies spécialités */}
+          <div className="mt-8 grid sm:grid-cols-2 gap-4 max-w-xl">
+            <ExpertiseBlock
+              title={t('hero.expertiseBlock1')}
+              tone="primary"
+              delay={0.45}
+            />
+            <ExpertiseBlock
+              title={t('hero.expertiseBlock2')}
+              tone="secondary"
+              delay={0.5}
+            />
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            custom={0.55}
+            className="mt-10 flex flex-wrap gap-3"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-soft transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              {t('hero.ctaContact')}
+            </Link>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-white/15 text-white text-sm font-medium hover:border-white/40 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              {t('hero.ctaDownloadCV')}
+            </button>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Modal */}
       <CVModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onDownload={handleCVDownload}
+        t={t}
       />
-
-      {/* Styles */}
-      <style>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

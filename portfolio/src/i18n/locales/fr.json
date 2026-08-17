@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "about": "À propos",
+    "work": "Projets",
+    "expertise": "Expertise",
+    "experience": "Expérience",
+    "certifications": "Certifications",
+    "writing": "Articles",
+    "contact": "Contact",
+    "resume": "CV",
+    "getInTouch": "Me contacter",
+    "menu": "Menu"
+  },
+  "hero": {
+    "titleTop": "Software",
+    "titleBottom": "Engineer",
+    "statExperience": "Ans d'expérience",
+    "statProjects": "Projets livrés",
+    "statTech": "Technologies clés",
+    "expertiseBlock1": "Software Engineering — React, Django, PostgreSQL, architecture propre",
+    "expertiseBlock2": "IA & Cloud — Python, DeepFace, NLTK, Oracle Cloud Infrastructure",
+    "ctaContact": "Me contacter",
+    "ctaDownloadCV": "Télécharger le CV",
+    "cvModalTitle": "Télécharger le CV",
+    "cvModalSubtitle": "Choisissez une langue",
+    "cvModalFrench": "Français",
+    "cvModalEnglish": "Anglais"
+  },
+  "about": {
+    "headingTop": "À",
+    "headingBottom": "Propos"
+  },
+  "skills": {
+    "headingTop": "Compétences",
+    "headingBottom": "Clés",
+    "headingTopFull": "Compétences",
+    "headingBottomFull": "Complètes",
+    "viewAll": "Toute l'expertise",
+    "categoryFrontend": "Frontend",
+    "categoryBackend": "Backend",
+    "categoryDatabase": "Base de données",
+    "categoryTools": "Outil",
+    "categoryAi": "Data / IA"
+  },
+  "services": {
+    "headingTop": "Comment Puis-je",
+    "headingBottom": "Vous Aider",
+    "onQuote": "Sur devis",
+    "monthlyPlan": "Forfait mensuel",
+    "chatWhatsApp": "Discuter sur WhatsApp"
+  },
+  "timeline": {
+    "headingTop": "Mon Parcours &",
+    "headingBottom": "Expérience",
+    "headingTopFull": "Expérience",
+    "headingBottomFull": "Complète",
+    "viewAll": "Expérience complète"
+  },
+  "projects": {
+    "headingTop": "Projets",
+    "headingBottom": "Récents",
+    "headingTopFull": "Tous les",
+    "headingBottomFull": "Projets",
+    "viewAll": "Voir tous les projets",
+    "caseStudyBadge": "Étude de cas",
+    "sourceCode": "Code source",
+    "liveDemo": "Démo live",
+    "allProjects": "Tous les projets",
+    "problem": "Problème",
+    "solution": "Solution",
+    "role": "Rôle",
+    "architecture": "Architecture",
+    "challenges": "Défis Techniques",
+    "learnings": "Ce Que J'ai Appris",
+    "outcome": "Résultat",
+    "noCaseStudy": "Étude de cas détaillée pas encore rédigée pour ce projet — consultez le code source ci-dessus."
+  },
+  "certifications": {
+    "headingTop": "Certifications &",
+    "headingBottom": "Diplômes",
+    "headingTopFull": "Toutes les",
+    "headingBottomFull": "Certifications",
+    "viewAll": "Voir toutes les certifications",
+    "viewCertificate": "Voir le certificat",
+    "verify": "Vérifier"
+  },
+  "writing": {
+    "headingTop": "Notes",
+    "headingBottom": "Techniques",
+    "headingTopFull": "Tous les",
+    "headingBottomFull": "Articles",
+    "viewAll": "Tous les articles"
+  },
+  "resume": {
+    "headingTop": "CV",
+    "headingBottom": "Résumé",
+    "experienceEducation": "Expérience & Formation",
+    "skills": "Compétences"
+  },
+  "contact": {
+    "headingTop": "Travaillons",
+    "headingBottom": "Ensemble",
+    "name": "Nom complet",
+    "namePlaceholder": "Votre nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "phonePlaceholder": "+227 XX XX XX XX",
+    "subject": "Sujet",
+    "subjectPlaceholder": "De quoi voulez-vous parler ?",
+    "message": "Message",
+    "messagePlaceholder": "Décrivez votre projet ou votre demande...",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successBody": "Je vous répondrai dans les plus brefs délais.",
+    "labelEmail": "Email",
+    "labelPhone": "Téléphone",
+    "labelLocation": "Localisation",
+    "errNameRequired": "Le nom est requis",
+    "errNameLength": "Le nom doit contenir au moins 2 caractères",
+    "errEmailRequired": "L'email est requis",
+    "errEmailInvalid": "Email invalide",
+    "errPhoneInvalid": "Numéro de téléphone invalide",
+    "errMessageRequired": "Le message est requis",
+    "errMessageLength": "Le message doit contenir au moins 10 caractères",
+    "errThrottle": "Veuillez patienter avant de renvoyer le formulaire.",
+    "errSubmitFailed": "Échec de l'envoi — réessayez plus tard.",
+    "errNetwork": "Une erreur réseau est survenue. Réessayez plus tard."
+  },
+  "cta": {
+    "title": "Construisons quelque chose de solide, ensemble.",
+    "body": "Ouvert aux stages, projets freelance et collaborations en ingénierie logicielle, IA ou infrastructure cloud.",
+    "button": "Me contacter"
+  },
+  "footer": {
+    "role": "Software Engineer"
+  }
+}
