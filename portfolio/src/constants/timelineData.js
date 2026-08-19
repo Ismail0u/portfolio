@@ -3,14 +3,36 @@
 // ============================================
 export const TIMELINE = [
   {
-    id: 'Nexcellus',
-    year: "Jan 2026 – Avr 2026",
-    titleFr: 'Développeur web et mobile',
-    titleEn: 'Web & Mobile Developer',
+    id: 'jacigreen',
+    year: '2026',
+    titleFr: 'Stagiaire IA & Développement Full-Stack – JaciGreen',
+    titleEn: 'AI & Full-Stack Dev Intern – JaciGreen',
     descriptionFr:
-      "Collaboration avec l'équipe de Nexcellus, afin de proposer des solutions digitales et favoriser la digitalisation de la structure.",
+      "Plateforme de détection intelligente de jacinthe d'eau : fine-tuning YOLOv8, API FastAPI, données géospatiales PostGIS, conteneurisation Docker.",
     descriptionEn:
-      'Collaborating with the Nexcellus team to deliver digital solutions and support the organization\'s digitalization.',
+      'Intelligent water-hyacinth detection platform: YOLOv8 fine-tuning, FastAPI backend, PostGIS geospatial data, Docker containerization.',
+    type: 'work',
+  },
+  {
+    id: 'Nexcellus',
+    year: 'Jan 2026 – Avr 2026',
+    titleFr: 'Développeur Full-Stack – Nexcellus',
+    titleEn: 'Full-Stack Developer – Nexcellus',
+    descriptionFr:
+      "Conception et déploiement d'une plateforme de coaching professionnel (Next.js, Prisma, API sécurisées) pour l'employabilité des jeunes.",
+    descriptionEn:
+      "Designed and deployed a professional coaching platform (Next.js, Prisma, secured APIs) supporting youth employability.",
+    type: 'work',
+  },
+  {
+    id: 'devbyte',
+    year: 'Aug 2025 – Present',
+    titleFr: 'UI Designer & Développeur Front-end – DevByte Community',
+    titleEn: 'UI Designer & Front-end Dev – DevByte Community',
+    descriptionFr:
+      "Design (Figma) et développement front-end (React) au sein d'une équipe distribuée de designers, développeurs et project managers.",
+    descriptionEn:
+      'Design (Figma) and front-end development (React) within a distributed team of designers, developers, and project managers.',
     type: 'work',
   },
   {
@@ -23,33 +45,34 @@ export const TIMELINE = [
     type: 'education',
   },
   {
-    id: 'devbyte',
-    year: 'Aug 2025 – Present',
-    titleFr: 'UI Designer & Développeur Front-end – DevByte Community',
-    titleEn: 'UI Designer & Front-end Dev – DevByte Community',
+    id: 'novatech',
+    year: 'Avr – Juin 2025',
+    titleFr: 'Stage Développeur Full-Stack – Novatech Niger',
+    titleEn: 'Full-Stack Developer Intern – Novatech Niger',
     descriptionFr:
-      "Collaboration avec une équipe de designers, développeurs (back et front) et project managers sur des projets Open Source.",
+      'EMIG Resto : plateforme de gestion de restaurant universitaire (Django, React, PostgreSQL), auth par rôles et optimisation des endpoints.',
     descriptionEn:
-      'Collaborating with a team of designers, back/front-end developers, and project managers on open source projects.',
+      'EMIG Resto: university restaurant management platform (Django, React, PostgreSQL), role-based auth and endpoint optimization.',
     type: 'work',
   },
   {
     id: 'emig',
     year: '2022 – 2025',
-    titleFr: 'Licence Génie Logiciel – EMIG',
-    titleEn: "Bachelor's in Software Engineering – EMIG",
+    titleFr: 'Licence Génie Logiciel – EMIG (Mention Très Bien)',
+    titleEn: "Bachelor's in Software Engineering – EMIG (High Honors)",
     descriptionFr: 'Formation en développement web, mobile et ingénierie logicielle.',
     descriptionEn: 'Coursework in web development, mobile development, and software engineering.',
     type: 'education',
   },
   {
-    id: 'novatech',
-    year: 'Apr – Jun 2025',
-    titleFr: 'Stage – Novatech Niger',
-    titleEn: 'Internship – Novatech Niger',
+    id: 'nigelec',
+    year: 'Juil – Sep 2024',
+    titleFr: 'Assistant Maintenance IT – NIGELEC',
+    titleEn: 'IT Maintenance Assistant – NIGELEC',
     descriptionFr:
-      "Développement d'une application de gestion de restaurant (React, Django, PostgreSQL).",
-    descriptionEn: 'Built a restaurant management application (React, Django, PostgreSQL).',
+      "Support et maintenance des postes informatiques et équipements réseau, disponibilité des services critiques.",
+    descriptionEn:
+      'Support and maintenance of workstations and network equipment, ensuring critical service availability.',
     type: 'work',
   },
   {
@@ -57,8 +80,8 @@ export const TIMELINE = [
     year: '2024',
     titleFr: 'Projet personnel – FaceLogin',
     titleEn: 'Personal project – FaceLogin',
-    descriptionFr: 'Reconnaissance faciale avec DeepFace et Streamlit.',
-    descriptionEn: 'Facial recognition with DeepFace and Streamlit.',
+    descriptionFr: 'Système de pointage par reconnaissance faciale (DeepFace, Streamlit), rapports PDF automatiques.',
+    descriptionEn: 'Facial-recognition attendance system (DeepFace, Streamlit) with automatic PDF reports.',
     type: 'project',
   },
   {
