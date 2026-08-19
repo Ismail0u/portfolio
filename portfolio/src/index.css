@@ -1,142 +1,424 @@
 /**
  * ============================================
- * PORTFOLIO V3 - DIRECTION SOBRE / SENIOR
+ * PORTFOLIO V5 — SOBER / SENIOR
  * ============================================
- * Fond noir statique, typographie comme moteur
- * visuel, couleur en accent ciblé uniquement.
+ *
+ * Tailwind CSS 4.3+
+ *
  * ============================================
  */
 
-/* ============================================
-   TAILWIND IMPORTS
-   ============================================ */
 @import "tailwindcss";
-@import "tailwindcss/utilities";
 
-/* ============================================
-   GOOGLE FONTS
-   ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url(
+  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+);
 
-/* ============================================
-   ROOT & BASE
-   ============================================ */
-html {
-  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+
+/* =========================================================
+   01 — THEME VARIABLES
+   ========================================================= */
+
+:root {
+  /* Background */
+  --theme-bg: rgb(250 249 246);
+  --theme-bg-soft: rgb(255 255 255);
+
+  /* Foreground */
+  --theme-fg: rgb(15 15 18);
+  --theme-fg-soft: rgb(98, 98, 104);
+
+  /* Primary accent */
+  --theme-accent: rgb(109 91 255);
+  --theme-accent-soft: rgb(165 151 255);
+  --theme-accent-dim: rgb(76 63 207);
+
+  /* Secondary accent */
+  --theme-accent-2: rgb(192 132 252);
+  --theme-accent-2-soft: rgb(221 179 255);
+  --theme-accent-2-dim: rgb(157 95 224);
+
+  /* Static */
+  --theme-ink: rgb(10 10 10);
+  --theme-paper: rgb(244 241 234);
+
+  color-scheme: light;
 }
+
+
+/* =========================================================
+   02 — DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] {
+  --theme-bg: rgb(10 10 10);
+  --theme-bg-soft: rgb(17 17 19);
+
+  --theme-fg: rgb(255 255 255);
+  --theme-fg-soft: rgb(160 160 170);
+
+  --theme-accent: rgb(109 91 255);
+  --theme-accent-soft: rgb(165 151 255);
+  --theme-accent-dim: rgb(76 63 207);
+
+  --theme-accent-2: rgb(192 132 252);
+  --theme-accent-2-soft: rgb(221 179 255);
+  --theme-accent-2-dim: rgb(157 95 224);
+
+  color-scheme: dark;
+}
+
+
+/* =========================================================
+   03 — TAILWIND CSS 4 THEME
+   ========================================================= */
+
+@theme {
+  /*
+   * Semantic colors
+   */
+
+  --color-bg: var(--theme-bg);
+  --color-bg-soft: var(--theme-bg-soft);
+
+  --color-fg: var(--theme-fg);
+  --color-fg-soft: var(--theme-fg-soft);
+
+  /*
+   * Primary accent
+   */
+
+  --color-accent: var(--theme-accent);
+  --color-accent-soft: var(--theme-accent-soft);
+  --color-accent-dim: var(--theme-accent-dim);
+
+  /*
+   * Secondary accent
+   */
+
+  --color-accent-2: var(--theme-accent-2);
+  --color-accent-2-soft: var(--theme-accent-2-soft);
+  --color-accent-2-dim: var(--theme-accent-2-dim);
+
+  /*
+   * Static colors
+   */
+
+  --color-ink: var(--theme-ink);
+  --color-paper: var(--theme-paper);
+
+  /*
+   * Fonts
+   */
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+
+/* =========================================================
+   04 — BASE
+   ========================================================= */
+
+html {
+  min-height: 100%;
+
+  scroll-behavior: smooth;
+
+  overflow-x: hidden;
+
+  background: var(--theme-bg);
+  color: var(--theme-fg);
+
+  font-family: "Inter", sans-serif;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 body {
+  min-height: 100vh;
+
   margin: 0;
   padding: 0;
+
   overflow-x: hidden;
-  background: #0a0a0a;
-  color: #e2e8f0;
-  position: relative;
+
+  background: var(--theme-bg);
+  color: var(--theme-fg);
+
+  font-family: "Inter", sans-serif;
+
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }
 
-/* ============================================
-   PREMIUM ACCENT GLOW (statique, très subtil)
-   ============================================ */
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   05 — TYPOGRAPHY
+   ========================================================= */
+
+.font-display {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.font-body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+button,input,textarea,select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   06 — BRAND GLOW
+   ========================================================= */
+
 .brand-glow {
   position: relative;
+  isolation: isolate;
 }
+
+
 .brand-glow::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -120px;
   left: 50%;
-  transform: translateX(-50%);
   width: 560px;
   height: 320px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(109, 91, 255, 0.16) 0%,
-    rgba(192, 132, 252, 0.08) 45%,
-    transparent 75%
-  );
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgb(var(--theme-accent) / 0.16) 0%,
+      rgb(var(--theme-accent-2) / 0.08) 45%,
+      transparent 75%
+    );
+
   pointer-events: none;
+
   z-index: -1;
 }
 
+
+/* =========================================================
+   07 — BRAND GRADIENT
+   ========================================================= */
+
 .text-gradient-brand {
-  background: linear-gradient(90deg, #a597ff, #c084fc);
+  background:
+    linear-gradient(
+      90deg,
+      #a597ff 0%,
+      #c084fc 100%
+    );
+
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
-/* ============================================
-   TYPOGRAPHIE
-   ============================================ */
-.font-primary {
-  font-family: 'Space Grotesk', sans-serif;
+
+/* =========================================================
+   08 — SURFACES
+   ========================================================= */
+
+.surface-glass {
+  background: color-mix(
+    in srgb,
+    var(--theme-bg-soft) 72%,
+    transparent
+  );
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--theme-fg) 8%,
+      transparent
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+
+.border-subtle {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--theme-fg) 10%,
+      transparent
+    );
 }
 
-/* ============================================
-   SCROLLBAR (sobre)
-   ============================================ */
+
+/* =========================================================
+   09 — SCROLLBAR
+   ========================================================= */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
+
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--theme-bg);
 }
+
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-fg) 15%,
+      transparent
+    );
+
+  border-radius: 999px;
+
+  transition: background-color 150ms ease;
 }
+
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-fg) 28%,
+      transparent
+    );
 }
 
-/* ============================================
-   SÉLECTION DE TEXTE
-   ============================================ */
+
+/* Firefox */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color:
+    color-mix(
+      in srgb,
+      var(--theme-fg) 18%,
+      transparent
+    )
+    var(--theme-bg);
+}
+
+
+/* =========================================================
+   10 — TEXT SELECTION
+   ========================================================= */
+
 ::selection {
-  background-color: rgba(109, 91, 255, 0.35);
-  color: #ffffff;
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-accent) 35%,
+      transparent
+    );
+
+  color: white;
 }
 
-/* ============================================
-   ACCESSIBILITÉ — REDUCED MOTION
-   ============================================ */
+
+::-moz-selection {
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-accent) 35%,
+      transparent
+    );
+
+  color: white;
+}
+
+
+/* =========================================================
+   11 — ACCESSIBILITY / FOCUS
+   ========================================================= */
+
+*:focus-visible {
+  outline: 2px solid var(--theme-accent);
+
+  outline-offset: 3px;
+
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   12 — REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
   }
 }
 
-/* ============================================
-   FOCUS STYLES
-   ============================================ */
-*:focus-visible {
-  outline: 2px solid #6d5bff;
-  outline-offset: 2px;
-}
 
-/* ============================================
-   PRINT STYLES
-   ============================================ */
+/* =========================================================
+   13 — PRINT
+   ========================================================= */
+
 @media print {
+  html,
   body {
     background: white !important;
+
     color: black !important;
+  }
+
+  * {
+    box-shadow: none !important;
+
+    text-shadow: none !important;
   }
 }
