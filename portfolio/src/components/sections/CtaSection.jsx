@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: 'easeOut' },
-  }),
-};
+import { fadeUp } from '../../constants/motionVariants';
 
 export default function CtaSection() {
   const { t } = useTranslation();
@@ -23,12 +15,12 @@ export default function CtaSection() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
-        className="brand-glow rounded-2xl border border-white/10 p-10 sm:p-14 text-center max-w-3xl mx-auto"
+        className="brand-glow rounded-2xl border border-fg/10 p-10 sm:p-14 text-center max-w-3xl mx-auto"
       >
-        <h2 className="font-display font-bold text-2xl sm:text-3xl text-white">
+        <h2 className="font-display font-bold text-2xl sm:text-3xl text-fg">
           {t('cta.title')}
         </h2>
-        <p className="mt-3 text-white/50 max-w-lg mx-auto">
+        <p className="mt-3 text-fg/50 max-w-lg mx-auto">
           {t('cta.body')}
         </p>
         <Link

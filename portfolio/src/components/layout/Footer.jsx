@@ -11,9 +11,9 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 py-8">
+    <footer className="border-t border-fg/10 py-8">
       <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-white/40">
+        <p className="text-xs text-fg/40">
           © {new Date().getFullYear()} Moussa Ismael - Software Engineer
         </p>
         <div className="flex items-center gap-4">
@@ -23,7 +23,7 @@ export default function Footer() {
               href={href}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="text-white/40 hover:text-white transition-colors"
+              className="text-fg/40 hover:text-fg transition-colors"
               aria-label={label}
             >
               <Icon className="w-4 h-4" />
