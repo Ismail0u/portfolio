@@ -17,8 +17,8 @@
     "statExperience": "Years of experience",
     "statProjects": "Projects delivered",
     "statTech": "Core technologies",
-    "expertiseBlock1": "Software Engineering — React, Django, PostgreSQL, clean architecture",
-    "expertiseBlock2": "AI & Cloud — Python, DeepFace, NLTK, Oracle Cloud Infrastructure",
+    "expertiseBlock1": "Software Engineering — React, Next.js, Django, PostgreSQL, clean architecture",
+    "expertiseBlock2": "AI & Cloud — FastAPI, YOLOv8, Docker, PostGIS, OCI",
     "ctaContact": "Get in touch",
     "ctaDownloadCV": "Download CV",
     "cvModalTitle": "Download CV",
@@ -73,7 +73,7 @@
     "challenges": "Technical Challenges",
     "learnings": "What I Learned",
     "outcome": "Outcome",
-    "noCaseStudy": "Detailed case study not yet written for this project — check the source code above."
+    "noCaseStudy": "Detailed case study not yet written for this project | check the source code above."
   },
   "certifications": {
     "headingTop": "Certifications &",
@@ -129,7 +129,7 @@
   },
   "cta": {
     "title": "Let's build something reliable together.",
-    "body": "Open to internships, freelance projects, and collaborations in software engineering, AI, or cloud infrastructure.",
+    "body": "Open to internships, freelance projects, and collaborations in software engineering, AI.",
     "button": "Get in touch"
   },
   "footer": {
