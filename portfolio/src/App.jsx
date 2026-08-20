@@ -23,7 +23,7 @@ import './index.css';
 export default function App() {
   return (
     <HelmetProvider>
-      <div className="min-h-screen flex flex-col font-primary transition duration-100 scroll-smooth bg-ink text-white">
+      <div className="min-h-screen flex flex-col font-primary transition duration-100 scroll-smooth bg-bg text-fg">
         <SEO />
         <ScrollToTop />
         <Navbar />

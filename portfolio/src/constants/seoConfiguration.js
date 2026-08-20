@@ -18,7 +18,7 @@ export const SEO_CONFIG = {
     'DevByte Community',
   ],
   url: 'https://portfolio-smael.vercel.app/',
-  image: 'https://portfolio-smael.vercel.app/og-image.png',
+  image: 'https://portfolio-smael.vercel.app/assets/image/isma12.jpeg',
   author: PERSONAL_INFO.name,
   type: 'website',
   locale: 'fr_FR',

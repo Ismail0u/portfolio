@@ -2,37 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  FaReact, FaPython, FaHtml5, FaCss3Alt, FaGithub, FaNodeJs,
+  FaReact, FaPython, FaHtml5, FaGithub, FaNodeJs,
 } from 'react-icons/fa';
-import { SiTailwindcss, SiDjango, SiJavascript, SiMysql, SiPostgresql, SiStreamlit, SiFigma } from 'react-icons/si';
+import {
+  SiTailwindcss, SiDjango, SiJavascript, SiMysql, SiPostgresql, SiStreamlit, SiFigma,
+  SiFastapi, SiDocker, SiNextdotjs, SiPrisma, SiRedis, SiExpo, SiOpencv, SiLinux,
+} from 'react-icons/si';
 import { Code, ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SKILLS } from '../../constants/skillData';
-import { SectionHeading } from './Hero';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: 'easeOut' },
-  }),
-};
+import SectionHeading from '../common/SectionHeading';
+import { fadeUp } from '../../constants/motionVariants';
 
 const SKILL_ICONS = {
   React: FaReact,
-  Django: SiDjango,
+  'Next.js': SiNextdotjs,
+  'React Native / Expo': SiExpo,
+  'Django / DRF': SiDjango,
   Python: FaPython,
+  FastAPI: SiFastapi,
   JavaScript: SiJavascript,
   TailwindCSS: SiTailwindcss,
   'Node.js': FaNodeJs,
-  CSS3: FaCss3Alt,
-  HTML5: FaHtml5,
-  'Git/GitHub': FaGithub,
+  Prisma: SiPrisma,
+  'REST API': Code,
+  'HTML5 / CSS3': FaHtml5,
+  'Git / GitHub': FaGithub,
   MySQL: SiMysql,
   PostgreSQL: SiPostgresql,
+  PostGIS: Code,
+  Redis: SiRedis,
+  Docker: SiDocker,
+  Linux: SiLinux,
   Streamlit: SiStreamlit,
   Figma: SiFigma,
+  OpenCV: SiOpencv,
+  'NLP / NLTK': Code,
 };
 
 const CATEGORY_KEY = {
@@ -54,12 +59,12 @@ export const SkillRow = ({ skill, delay, t }) => {
       custom={delay}
       className="flex items-center gap-3 py-3"
     >
-      <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-        <Icon className="w-4 h-4 text-white/70" />
+      <div className="w-9 h-9 rounded-lg bg-fg/5 flex items-center justify-center shrink-0">
+        <Icon className="w-4 h-4 text-fg/70" />
       </div>
       <div>
-        <p className="text-sm font-medium text-white">{skill.name}</p>
-        <p className="text-xs text-white/40">{t(`skills.${CATEGORY_KEY[skill.category]}`)}</p>
+        <p className="text-sm font-medium text-fg">{skill.name}</p>
+        <p className="text-xs text-fg/40">{t(`skills.${CATEGORY_KEY[skill.category]}`)}</p>
       </div>
     </motion.div>
   );
@@ -85,14 +90,14 @@ export default function Skills({ limit, showViewAll = false, headingTop, heading
         {showViewAll && (
           <Link
             to="/expertise"
-            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
+            className="text-sm font-medium text-fg/50 hover:text-fg transition-colors inline-flex items-center gap-1"
           >
             {t('skills.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         )}
       </div>
 
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
+      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-x-10 max-w-2xl">
         {list.map((skill, i) => (
           <SkillRow key={skill.name} skill={skill} delay={0.03 * i} t={t} />
         ))}

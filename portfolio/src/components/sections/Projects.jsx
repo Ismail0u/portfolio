@@ -5,16 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Github, ArrowUpRight } from 'lucide-react';
 import { PROJECTS, CATEGORY_ACCENT } from '../../constants/projectsData';
 import { trackEvent, pickLang } from '../../utils';
-import { SectionHeading } from './Hero';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: 'easeOut' },
-  }),
-};
+import SectionHeading from '../common/SectionHeading';
+import { fadeUp } from '../../constants/motionVariants';
 
 const ProjectRow = ({ project, delay, lang, t }) => {
   const accent = CATEGORY_ACCENT[project.category] || 'accent';
@@ -42,7 +34,7 @@ const ProjectRow = ({ project, delay, lang, t }) => {
     >
       <Wrapper
         {...wrapperProps}
-        className="group flex items-start gap-4 py-5 border-b border-white/10 hover:border-white/20 transition-colors"
+        className="group flex items-start gap-4 py-5 border-b border-fg/10 hover:border-fg/20 transition-colors"
       >
         <span
           className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${
@@ -52,29 +44,29 @@ const ProjectRow = ({ project, delay, lang, t }) => {
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="font-display font-semibold text-white group-hover:text-accent-soft transition-colors">
+            <h3 className="font-display font-semibold text-fg group-hover:text-accent-soft transition-colors">
               {project.title}
             </h3>
-            <span className="text-xs text-white/30">{project.year}</span>
+            <span className="text-xs text-fg/30">{project.year}</span>
             {hasCaseStudy && (
               <span className="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-accent/15 text-accent-soft">
                 {t('projects.caseStudyBadge')}
               </span>
             )}
           </div>
-          <p className="mt-1 text-sm text-white/50 leading-relaxed max-w-xl">
+          <p className="mt-1 text-sm text-fg/50 leading-relaxed max-w-xl">
             {pickLang(project, 'description', lang)}
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
             {project.tech.map((tech) => (
-              <span key={tech} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 text-white/40">
+              <span key={tech} className="text-[11px] px-2 py-0.5 rounded-full bg-fg/5 text-fg/40">
                 {tech}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0 text-white/30 group-hover:text-white transition-colors">
+        <div className="flex items-center gap-2 shrink-0 text-fg/30 group-hover:text-fg transition-colors">
           {!hasCaseStudy && <Github className="w-4 h-4" />}
           <ArrowUpRight className="w-4 h-4" />
         </div>
@@ -102,7 +94,7 @@ export default function Projects({ limit, showViewAll = false, headingTop, headi
         {showViewAll && (
           <Link
             to="/work"
-            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
+            className="text-sm font-medium text-fg/50 hover:text-fg transition-colors inline-flex items-center gap-1"
           >
             {t('projects.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>

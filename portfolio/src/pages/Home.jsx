@@ -13,31 +13,31 @@ export default function Home() {
     <>
       <Hero />
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <About />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <Skills limit={6} showViewAll />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <Timeline limit={3} showViewAll />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <Projects limit={3} showViewAll />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <Certifications limit={3} showViewAll />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <CaseStudies limit={2} showViewAll />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <CtaSection />
       </div>
     </>

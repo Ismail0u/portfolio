@@ -6,6 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '../../constants/navigation';
 import { useScrollPosition, useMediaQuery } from '../../hooks';
 import LanguageSwitcher from '../common/LanguageSwitcher';
+import ThemeToggle from '../common/ThemeToggle';
+
+
+// Navbar component with responsive design, scroll detection, and theme/language toggles.
+// the navbar changes its background color when the user scrolls down, and it has a mobile menu that can be toggled open and closed. The component also uses internationalization for navigation links and includes a link to the resume page.
+
+
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -25,24 +32,24 @@ export default function Navbar() {
 
   const linkClass = ({ isActive }) =>
     `px-3 py-2 text-sm font-medium transition-colors ${
-      isActive ? 'text-white' : 'text-white/50 hover:text-white'
+      isActive ? 'text-fg' : 'text-fg/50 hover:text-fg'
     }`;
 
   const mobileLinkClass = ({ isActive }) =>
     `block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-      isActive ? 'bg-accent text-white' : 'text-white/60 hover:bg-white/5'
+      isActive ? 'bg-accent text-white' : 'text-fg/60 hover:bg-fg/5'
     }`;
 
   return (
     <>
       <nav
         className={`fixed top-0 z-40 w-full transition-colors duration-300 ${
-          hasScrolled ? 'bg-ink/90 backdrop-blur-md border-b border-white/10' : 'bg-transparent'
+          hasScrolled ? 'bg-bg/90 backdrop-blur-md border-b border-fg/10' : 'bg-transparent'
         }`}
       >
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-between h-14">
-            <Link to="/" className="font-display font-bold text-white text-sm">
+            <Link to="/" className="font-display font-bold text-fg text-sm">
               Moussa Ismael
             </Link>
 
@@ -54,16 +61,17 @@ export default function Navbar() {
               ))}
               <Link
                 to="/resume"
-                className="ml-2 px-3 py-2 text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1.5"
+                className="ml-2 px-3 py-2 text-sm font-medium text-fg/50 hover:text-fg transition-colors inline-flex items-center gap-1.5"
               >
                 <FileText className="w-3.5 h-3.5" /> {t('nav.resume')}
               </Link>
               <LanguageSwitcher className="ml-3" />
+              <ThemeToggle className="ml-2" />
             </div>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 text-white/70 hover:text-white"
+              className="md:hidden p-2 text-fg/70 hover:text-fg"
               aria-label="Menu"
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -87,11 +95,11 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 z-40 w-[80%] max-w-xs bg-ink-soft border-l border-white/10 md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 z-40 w-[80%] max-w-xs bg-bg-soft border-l border-fg/10 md:hidden overflow-y-auto"
             >
-              <div className="flex items-center justify-between p-4 border-b border-white/10">
-                <span className="font-display font-semibold text-white">Menu</span>
-                <button onClick={() => setMenuOpen(false)} className="p-1 text-white/50 hover:text-white">
+              <div className="flex items-center justify-between p-4 border-b border-fg/10">
+                <span className="font-display font-semibold text-fg">Menu</span>
+                <button onClick={() => setMenuOpen(false)} className="p-1 text-fg/50 hover:text-fg">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -112,8 +120,11 @@ export default function Navbar() {
                 </NavLink>
               </div>
 
-              <div className="p-4 border-t border-white/10 space-y-3">
-                <LanguageSwitcher />
+              <div className="p-4 border-t border-fg/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <LanguageSwitcher />
+                  <ThemeToggle />
+                </div>
                 <Link
                   to="/contact"
                   onClick={() => setMenuOpen(false)}

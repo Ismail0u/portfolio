@@ -6,7 +6,7 @@ export default function ExpertisePage() {
   return (
     <div className="pt-14">
       <Skills />
-      <div className="border-t border-white/10">
+      <div className="border-t border-fg/10">
         <Services />
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function SEO({
     url: SEO_CONFIG.url,
     image: SEO_CONFIG.image,
     jobTitle: PERSONAL_INFO.title,
-    description: PERSONAL_INFO.bio,
+    description: PERSONAL_INFO.bioFr,
     email: PERSONAL_INFO.email,
     telephone: PERSONAL_INFO.phone,
     address: {
@@ -49,7 +49,7 @@ export default function SEO({
       'Django',
       'React Native',
       'Intelligence Artificielle',
-      'Cybersécurité',
+      'Genie Logiciel',
       'Python',
       'JavaScript',
     ],

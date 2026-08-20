@@ -4,17 +4,9 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Award, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { CERTIFICATIONS } from '../../constants/certificationsData';
-import { SectionHeading } from './Hero';
+import SectionHeading from '../common/SectionHeading';
 import { pickLang } from '../../utils';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: 'easeOut' },
-  }),
-};
+import { fadeUp } from '../../constants/motionVariants';
 
 export const CertCard = ({ cert, delay, lang, t }) => (
   <motion.div
@@ -23,19 +15,19 @@ export const CertCard = ({ cert, delay, lang, t }) => (
     viewport={{ once: true, margin: '-40px' }}
     variants={fadeUp}
     custom={delay}
-    className="rounded-xl border border-white/10 p-5 hover:border-white/20 transition-colors"
+    className="rounded-xl border border-fg/10 p-5 hover:border-fg/20 transition-colors"
   >
     <div className="flex items-start justify-between gap-3">
       <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
         <Award className="w-4 h-4 text-accent-soft" />
       </div>
-      <span className="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-white/5 text-white/40 shrink-0">
+      <span className="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-fg/5 text-fg/40 shrink-0">
         {pickLang(cert, 'category', lang)}
       </span>
     </div>
 
-    <h3 className="mt-3 text-sm font-semibold text-white leading-snug">{cert.title}</h3>
-    <p className="mt-1 text-xs text-white/40">{cert.org} — {cert.date}</p>
+    <h3 className="mt-3 text-sm font-semibold text-fg leading-snug">{cert.title}</h3>
+    <p className="mt-1 text-xs text-fg/40">{cert.org} — {cert.date}</p>
 
     <div className="mt-4 flex items-center gap-4">
       {cert.pdf && (
@@ -43,7 +35,7 @@ export const CertCard = ({ cert, delay, lang, t }) => (
           href={cert.pdf}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-medium text-accent-soft hover:text-white transition-colors inline-flex items-center gap-1"
+          className="text-xs font-medium text-accent-soft hover:text-fg transition-colors inline-flex items-center gap-1"
         >
           {t('certifications.viewCertificate')} <ExternalLink className="w-3 h-3" />
         </a>
@@ -53,7 +45,7 @@ export const CertCard = ({ cert, delay, lang, t }) => (
           href={cert.verifyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-medium text-white/40 hover:text-white transition-colors inline-flex items-center gap-1"
+          className="text-xs font-medium text-fg/40 hover:text-fg transition-colors inline-flex items-center gap-1"
         >
           {t('certifications.verify')} <ExternalLink className="w-3 h-3" />
         </a>
@@ -82,7 +74,7 @@ export default function Certifications({ limit, showViewAll = false, layout = 'g
         {showViewAll && (
           <Link
             to="/certifications"
-            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
+            className="text-sm font-medium text-fg/50 hover:text-fg transition-colors inline-flex items-center gap-1"
           >
             {t('certifications.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
@@ -92,8 +84,8 @@ export default function Certifications({ limit, showViewAll = false, layout = 'g
       <div
         className={
           layout === 'grid'
-            ? 'mt-10 grid sm:grid-cols-2 gap-4 max-w-3xl'
-            : 'mt-10 max-w-2xl divide-y divide-white/10'
+            ? 'mt-10 grid sm:grid-cols-3 gap-4 max-w-3xl'
+            : 'mt-10 max-w-2xl divide-y divide-fg/10'
         }
       >
         {list.map((cert, i) => (

@@ -4,17 +4,9 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
 import { TECH_NOTES } from '../../constants/notesData';
-import { SectionHeading } from './Hero';
+import SectionHeading from '../common/SectionHeading';
 import { pickLang } from '../../utils';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: 'easeOut' },
-  }),
-};
+import { fadeUp } from '../../constants/motionVariants';
 
 export const NoteRow = ({ note, delay, lang }) => (
   <motion.a
@@ -26,18 +18,18 @@ export const NoteRow = ({ note, delay, lang }) => (
     viewport={{ once: true, margin: '-40px' }}
     variants={fadeUp}
     custom={delay}
-    className="group block py-6 border-b border-white/10 hover:border-white/20 transition-colors"
+    className="group block py-6 border-b border-fg/10 hover:border-fg/20 transition-colors"
   >
     <div className="flex items-start justify-between gap-4">
-      <h3 className="font-display font-semibold text-accent-soft group-hover:text-white transition-colors max-w-xl">
+      <h3 className="font-display font-semibold text-accent-soft group-hover:text-fg transition-colors max-w-xl">
         {pickLang(note, 'title', lang)}
       </h3>
-      <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white transition-colors shrink-0 mt-1" />
+      <ArrowUpRight className="w-4 h-4 text-fg/20 group-hover:text-fg transition-colors shrink-0 mt-1" />
     </div>
-    <p className="mt-2 text-sm text-white/50 leading-relaxed max-w-2xl">
+    <p className="mt-2 text-sm text-fg/50 leading-relaxed max-w-2xl">
       {pickLang(note, 'excerpt', lang)}
     </p>
-    <p className="mt-3 text-xs text-white/30">{note.date}</p>
+    <p className="mt-3 text-xs text-fg/30">{note.date}</p>
   </motion.a>
 );
 
@@ -60,7 +52,7 @@ export default function CaseStudies({ limit, showViewAll = false, headingTop, he
         {showViewAll && (
           <Link
             to="/writing"
-            className="text-sm font-medium text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
+            className="text-sm font-medium text-fg/50 hover:text-fg transition-colors inline-flex items-center gap-1"
           >
             {t('writing.viewAll')} <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>

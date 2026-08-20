@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Minimal HTML head: SEO (title, meta, OG, JSON-LD, canonical...) handled by SEO component -->
-    <!-- Favicon (place the file in public/assets/image/isma1.png) -->
-    <link rel="icon" type="image/png" href="/src/assets/image/isma1.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/assets/image/isma12.jpeg" />
 
     <!-- Preconnect for fonts & important domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,6 +18,21 @@
 
     <!-- Minimal theme-color (can be overridden by SEO or meta tags injected client-side) -->
     <meta name="theme-color" content="#0ea5e9" />
+
+    <!-- Applique le thème AVANT le premier paint pour éviter un flash (FOUC) -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 
     <!-- Recommended: keep index.html minimal & let React (SEO component) inject page-specific meta tags -->
     <!-- If you need analytics, initialize GA inside React (controlled by VITE_ENABLE_ANALYTICS) -->

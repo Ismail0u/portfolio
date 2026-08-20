@@ -17,8 +17,8 @@
     "statExperience": "Ans d'expérience",
     "statProjects": "Projets livrés",
     "statTech": "Technologies clés",
-    "expertiseBlock1": "Software Engineering — React, Django, PostgreSQL, architecture propre",
-    "expertiseBlock2": "IA & Cloud — Python, DeepFace, NLTK, Oracle Cloud Infrastructure",
+    "expertiseBlock1": "Software Engineering — React, Next.js, Django, PostgreSQL, architecture propre",
+    "expertiseBlock2": "IA & Cloud — FastAPI, YOLOv8, Docker, PostGIS, OCI",
     "ctaContact": "Me contacter",
     "ctaDownloadCV": "Télécharger le CV",
     "cvModalTitle": "Télécharger le CV",
@@ -73,7 +73,7 @@
     "challenges": "Défis Techniques",
     "learnings": "Ce Que J'ai Appris",
     "outcome": "Résultat",
-    "noCaseStudy": "Étude de cas détaillée pas encore rédigée pour ce projet — consultez le code source ci-dessus."
+    "noCaseStudy": "Étude de cas détaillée pas encore rédigée pour ce projet | consultez le code source ci-dessus."
   },
   "certifications": {
     "headingTop": "Certifications &",
@@ -129,7 +129,7 @@
   },
   "cta": {
     "title": "Construisons quelque chose de solide, ensemble.",
-    "body": "Ouvert aux stages, projets freelance et collaborations en ingénierie logicielle, IA ou infrastructure cloud.",
+    "body": "Ouvert aux stages, projets freelance et collaborations en ingénierie logicielle, IA .",
     "button": "Me contacter"
   },
   "footer": {
