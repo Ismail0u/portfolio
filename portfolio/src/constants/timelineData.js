@@ -8,9 +8,9 @@ export const TIMELINE = [
     titleFr: 'Stagiaire IA & Développement Full-Stack – JaciGreen',
     titleEn: 'AI & Full-Stack Dev Intern – JaciGreen',
     descriptionFr:
-      "Plateforme de détection intelligente de jacinthe d'eau : fine-tuning YOLOv8, API FastAPI, données géospatiales PostGIS, conteneurisation Docker.",
+      "Conception d'une plateforme de surveillance environnementale : architecture en monolithe modulaire (FastAPI, React, React Native), intégration de YOLOv8 pour la détection de la jacinthe d'eau et traitement géospatial via PostGIS.",
     descriptionEn:
-      'Intelligent water-hyacinth detection platform: YOLOv8 fine-tuning, FastAPI backend, PostGIS geospatial data, Docker containerization.',
+      'Designed an environmental monitoring platform: modular monolith architecture (FastAPI, React, React Native), YOLOv8 integration for water-hyacinth detection, and geospatial processing via PostGIS.',
     type: 'work',
   },
   {
