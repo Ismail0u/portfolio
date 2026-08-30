@@ -19,9 +19,9 @@ export const TIMELINE = [
     titleFr: 'Développeur Full-Stack – Nexcellus',
     titleEn: 'Full-Stack Developer – Nexcellus',
     descriptionFr:
-      "Conception et déploiement d'une plateforme de coaching professionnel (Next.js, Prisma, API sécurisées) pour l'employabilité des jeunes.",
+      "Modernisation de la présence digitale de l'entreprise : audit technique, conception UI/UX (Figma) et développement d'un site web dynamique (Next.js, Supabase) incluant un dashboard admin, un système de blog, des job datings et une prise de rendez-vous en ligne.",
     descriptionEn:
-      "Designed and deployed a professional coaching platform (Next.js, Prisma, secured APIs) supporting youth employability.",
+      "Modernized the company's digital presence: technical audit, UI/UX design (Figma), and development of a dynamic website (Next.js, Supabase) featuring an admin dashboard, blog system, job datings, and online appointment booking.",
     type: 'work',
   },
   {
